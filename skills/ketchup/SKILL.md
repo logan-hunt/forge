@@ -16,4 +16,4 @@ List every decision still waiting on the user, including earlier unanswered ones
 
 Keep the recap proportionate to what changed. Show existing screenshots or a small diagram when they make a visible change or dependency easier to understand. A short text answer is enough when no picture helps.
 
-If nothing changed and no decision is pending, say so and stop. Otherwise name any remaining work you can continue. Follow the adopter's writing style.
+If nothing changed and no decision is pending, say so and stop. Otherwise name any remaining work you can continue. Follow the adopter's writing style and the [unslop](../unslop/SKILL.md) skill.

@@ -1,6 +1,6 @@
 # PR descriptions
 
-- Write PR descriptions for reviewers: what changed, why, and how the behavior was verified.
+- Write PR descriptions for reviewers: what changed, why, and how the behavior was verified. Write them under the [unslop](../../unslop/SKILL.md) skill in its STE-flavored mode.
 - Use the repository's PR template when present. If it has none, use [the bundled PR template](../../../templates/pull_request_template.md). Include an issue reference only when relevant to the repository's workflow.
 - Leave out the noise from producing the change:
   - local environment problems (failing local typecheck/lint/hooks, dependency drift, `--no-verify`, flaky local setup)

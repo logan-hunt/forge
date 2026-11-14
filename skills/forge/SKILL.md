@@ -48,7 +48,7 @@ Delegates execute the parent's approved plan; the parent owns human interaction 
 - Parallel coverage or experiments → [swarm](../swarm/SKILL.md). Competing artifacts or designs → [arena](../arena/SKILL.md). Contested design or consequential failure modes → [interrogate](../interrogate/SKILL.md).
 - Stateful logic → [principle-model-the-domain](../principle-model-the-domain/SKILL.md) before scattering conditionals. Repeated failed fixes → [principle-attack-the-premise](../principle-attack-the-premise/SKILL.md).
 - Nontrivial multi-step implementation → the Feature throughput checkpoint: prerequisites, independent workstreams, shared mutable state and smallest safe decomposition. Keep it short when little applies.
-- Prose → [unslop](../unslop/SKILL.md); substantial docs → [technical-writing](../technical-writing/SKILL.md). Follow the available skill-authoring workflow for skill changes. Use the existing [refine-code](../refine-code/SKILL.md) skill for a requested cleanup rather than an external cleanup plugin.
+- Any writing (prose, docs, PR descriptions, commit messages, skills, prompts and agent briefs) → [unslop](../unslop/SKILL.md). Follow the available skill-authoring workflow for skill changes. Use the existing [refine-code](../refine-code/SKILL.md) skill for a requested cleanup rather than an external cleanup plugin.
 - Comment cleanup → [no-comments](../no-comments/SKILL.md), with uncertainty preserved and no unrelated refactoring.
 - User-facing behavior → [principle-prove-it-works](../principle-prove-it-works/SKILL.md) on the real matching surface. Discover available browser/CLI/native tools, follow [Browser work](../../docs/browser-work.md) before using a browser, and follow `../../docs/harness/t3.md` when in T3. A single broken browser route is a reason to try another permitted route, not to stop.
 - Performance measurements → [benchmark-checklist](../benchmark-checklist/SKILL.md) before interpreting results.
@@ -73,7 +73,7 @@ Review briefs follow the [review contract](references/review.md), including prio
 
 ## Writing and comments
 
-Write plain, concise prose that makes outcomes and evidence easy to assess. Keep implementation details where they help the reader. Explain the decision rather than reciting principles or skipped checklist items. Do not fabricate citations, links or runtime results.
+Write under [unslop](../unslop/SKILL.md): its Strict mode for skills, prompts, agent briefs and other instructions, and its STE-flavored mode for prose. Make outcomes and evidence easy to assess. Keep implementation details where they help the reader. Explain the decision rather than reciting principles or skipped checklist items. Do not fabricate citations, links or runtime results.
 
 Keep comments for non-obvious constraints the code cannot communicate, legal notices and public API contracts. Delete narration and stale explanations after checking their meaning. Ambiguous constraints remain until understood. Comment cleanup is not permission for unrelated architecture work.
 
