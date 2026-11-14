@@ -1,0 +1,14 @@
+{
+  "name": "forge",
+  "version": "0.1.0",
+  "description": "Portable coding workflow skills for investigation, design, review, research and publishing, with optional setup hooks.",
+  "author": {
+    "name": "Logan Hunt",
+    "url": "https://github.com/logan-hunt"
+  },
+  "homepage": "https://github.com/logan-hunt/forge",
+  "repository": "https://github.com/logan-hunt/forge",
+  "license": "MIT",
+  "skills": "./skills/",
+  "displayName": "Forge"
+}

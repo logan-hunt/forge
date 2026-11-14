@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}}</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { margin: 0; background: transparent; font-family: var(--font-sans, system-ui, sans-serif); color: var(--foreground, #1c1c1c); font-size: 14px; line-height: 1.55; }
+  h1 { font-size: 22px; line-height: 1.25; margin: 0 0 10px; }
+  h2 { font-size: 17px; margin: 34px 0 10px; padding-top: 18px; border-top: 1px solid var(--border, #d9d9d9); }
+  h3 { font-size: 14px; margin: 18px 0 4px; }
+  h4 { font-size: 13px; margin: 14px 0 4px; color: var(--muted-foreground, #6b6b6b); }
+  p { margin: 0 0 10px; }
+  a { color: var(--primary, #2563eb); overflow-wrap: anywhere; }
+  code { font-family: var(--font-mono, ui-monospace, monospace); font-size: 12.5px; background: var(--code-background, rgba(127,127,127,.16)); padding: 1px 4px; border-radius: 4px; overflow-wrap: anywhere; }
+  pre { background: var(--card, rgba(127,127,127,.08)); border: 1px solid var(--border, #d9d9d9); border-radius: var(--radius, 8px); padding: 12px 14px; overflow-x: auto; }
+  pre code { background: none; padding: 0; overflow-wrap: normal; }
+  blockquote { margin: 0 0 10px; padding: 2px 14px; border-left: 3px solid var(--border, #d9d9d9); color: var(--muted-foreground, #6b6b6b); }
+  ol, ul { margin: 0 0 10px; padding-left: 20px; }
+  li > ul, li > ol { margin-bottom: 0; }
+  hr { border: 0; border-top: 1px solid var(--border, #d9d9d9); margin: 24px 0; }
+  .scroll { overflow-x: auto; margin: 0 0 12px; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  th, td { text-align: left; vertical-align: top; padding: 7px 10px 7px 0; border-bottom: 1px solid var(--border, #d9d9d9); }
+  th { color: var(--muted-foreground, #6b6b6b); font-weight: 600; font-size: 12px; }
+  td.num, th.num { text-align: right; padding-right: 0; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .hbar { display: grid; grid-template-columns: 170px 1fr 52px; gap: 10px; align-items: center; margin-bottom: 6px; font-size: 13px; }
+  .hbar .track { height: 14px; }
+  .hbar .track div { height: 100%; border-radius: 0 4px 4px 0; background: var(--chart-1, #2563eb); min-width: 2px; }
+  .hbar .track div.alt { background: var(--chart-2, #d97706); }
+  .hbar .n { text-align: right; font-variant-numeric: tabular-nums; }
+  .legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12.5px; color: var(--muted-foreground, #6b6b6b); margin: 6px 0 10px; }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; background: var(--chart-1, #2563eb); }
+  .legend i.alt { background: var(--chart-2, #d97706); }
+  @media (max-width: 480px) { .hbar { grid-template-columns: 110px 1fr 40px; } }
+</style>
+</head>
+<body>
+{{content}}
+</body>
+</html>

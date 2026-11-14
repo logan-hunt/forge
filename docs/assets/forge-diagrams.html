@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forge workflow and modes</title>
+<style>body { margin: 0; }</style>
+</head>
+<body>
+<style>
+  #forge-diagrams {
+    --foreground: #f6efdf;
+    --muted-foreground: #c0afa1;
+    --card: #17120f;
+    --muted: #322821;
+    --border: #6c4530;
+    --warning: #ff913e;
+    --font-sans: Arial, Helvetica, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.5;
+    display: grid;
+    gap: 24px;
+  }
+
+  #forge-diagrams *,
+  #forge-diagrams *::before,
+  #forge-diagrams *::after {
+    box-sizing: border-box;
+  }
+
+  #forge-diagrams > section {
+    padding: 32px;
+    border: 1px solid #493022;
+    border-radius: 12px;
+    background:
+      radial-gradient(ellipse at 95% 0%, #e2671726, transparent 65%),
+      linear-gradient(135deg, #211914, var(--card) 65%);
+  }
+
+  #forge-diagrams h2,
+  #forge-diagrams h3,
+  #forge-diagrams p {
+    margin: 0;
+  }
+
+  #forge-diagrams h2 {
+    margin-bottom: 30px;
+    font-size: 24px;
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+
+  #forge-diagrams h3 {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  #forge-diagrams .text-small {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  #forge-diagrams .workflow {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  #forge-diagrams .step {
+    position: relative;
+    display: grid;
+    align-content: start;
+    gap: 12px;
+  }
+
+  #forge-diagrams .step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 46px;
+    right: 0;
+    top: 17px;
+    border-top: 1px solid var(--border);
+    opacity: 0.8;
+  }
+
+  #forge-diagrams .step:nth-child(4)::after {
+    border-top-style: dashed;
+  }
+
+  #forge-diagrams .number {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    color: var(--warning);
+    background: #a947102e;
+    border: 1px solid #a95525;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    box-shadow: 0 0 18px #f16c1212;
+  }
+
+  #forge-diagrams .step:last-child .number {
+    background: var(--muted);
+    color: var(--muted-foreground);
+    border-color: #77604f;
+    box-shadow: none;
+  }
+
+  #forge-diagrams .step-copy,
+  #forge-diagrams .mode-copy {
+    display: grid;
+    gap: 6px;
+  }
+
+  #forge-diagrams .step-copy p,
+  #forge-diagrams .mode-copy p {
+    color: var(--muted-foreground);
+  }
+
+  #forge-diagrams .modes {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+  }
+
+  #forge-diagrams .mode {
+    display: grid;
+    align-content: start;
+    gap: 20px;
+  }
+
+  #forge-diagrams .mode-heading {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-height: 28px;
+  }
+
+  #forge-diagrams .default {
+    color: var(--warning);
+    background: #a947102e;
+    border-radius: 4px;
+    padding: 2px 7px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  #forge-diagrams .mode ul {
+    margin: 0;
+    padding-left: 17px;
+    display: grid;
+    gap: 10px;
+  }
+
+  #forge-diagrams .mode li::marker {
+    color: var(--warning);
+  }
+
+  #forge-diagrams .mode-summary {
+    color: var(--muted-foreground);
+  }
+
+  @media (max-width: 540px) {
+    #forge-diagrams > section {
+      padding: 24px;
+    }
+
+    #forge-diagrams .workflow {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+
+    #forge-diagrams .step {
+      grid-template-columns: 34px 1fr;
+      gap: 16px;
+    }
+
+    #forge-diagrams .step:not(:last-child)::after {
+      left: 17px;
+      right: auto;
+      top: 44px;
+      bottom: -12px;
+      border-top: 0;
+      border-left: 1px solid var(--border);
+    }
+
+    #forge-diagrams .step:nth-child(4)::after {
+      border-left-style: dashed;
+    }
+
+    #forge-diagrams .modes {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    #forge-diagrams .mode {
+      gap: 10px;
+    }
+  }
+</style>
+
+<div id="forge-diagrams">
+  <section id="workflow-diagram" aria-labelledby="workflow-title">
+    <h2 id="workflow-title">The workflow</h2>
+    <ol class="workflow" aria-label="Investigate, plan and approve, implement, verify and review, then publish when authorized">
+      <li class="step">
+        <span class="number" aria-hidden="true">01</span>
+        <div class="step-copy">
+          <h3>Investigate</h3>
+          <p class="text-small">Understand the task</p>
+        </div>
+      </li>
+      <li class="step">
+        <span class="number" aria-hidden="true">02</span>
+        <div class="step-copy">
+          <h3>Plan</h3>
+          <p class="text-small">Agree on the approach</p>
+        </div>
+      </li>
+      <li class="step">
+        <span class="number" aria-hidden="true">03</span>
+        <div class="step-copy">
+          <h3>Build</h3>
+          <p class="text-small">Implement the plan</p>
+        </div>
+      </li>
+      <li class="step">
+        <span class="number" aria-hidden="true">04</span>
+        <div class="step-copy">
+          <h3>Verify</h3>
+          <p class="text-small">Test and review</p>
+        </div>
+      </li>
+      <li class="step">
+        <span class="number" aria-hidden="true">05</span>
+        <div class="step-copy">
+          <h3>Publish</h3>
+          <p class="text-small">When authorized</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="modes-diagram" aria-labelledby="modes-title">
+    <h2 id="modes-title">Three modes. The same workflow.</h2>
+    <div class="modes">
+      <div class="mode">
+        <div class="mode-heading"><h3>Lite</h3></div>
+        <div class="mode-copy">
+          <p class="mode-summary text-small">One agent, focused work</p>
+          <ul>
+            <li>Solo implementation</li>
+            <li>Self-review</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mode">
+        <div class="mode-heading"><h3>Standard</h3><span class="default text-small">Default</span></div>
+        <div class="mode-copy">
+          <p class="mode-summary text-small">A second set of eyes</p>
+          <ul>
+            <li>Focused investigation</li>
+            <li>Independent review</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mode">
+        <div class="mode-heading"><h3>Max</h3></div>
+        <div class="mode-copy">
+          <p class="mode-summary text-small">Explore before committing</p>
+          <ul>
+            <li>Broader investigation</li>
+            <li>Competing designs</li>
+            <li>Independent review</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+</body>
+</html>

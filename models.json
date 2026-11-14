@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "roles": {
+    "bug-fix": null,
+    "perf-issue": null,
+    "hillclimb": null,
+    "how explorer": null,
+    "why investigators": null,
+    "reflect tooling": null,
+    "swarm workers": null,
+    "judgment and prose": null,
+    "how explainer": null,
+    "why synthesizer": null,
+    "independent review": null,
+    "hardest tasks": null,
+    "arena runners": null,
+    "arena cross-judge pool": null,
+    "architect runners": null,
+    "interrogate reviewers": null,
+    "reflect judgment": null,
+    "feature": null,
+    "refactoring": null,
+    "council": null
+  }
+}

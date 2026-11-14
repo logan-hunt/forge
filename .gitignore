@@ -1,0 +1,9 @@
+node_modules/
+.DS_Store
+*.log
+__pycache__/
+.venv/
+*.pyc
+
+# The Codex marketplace file lives here; override global ignores of .agents/.
+!/.agents/

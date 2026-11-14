@@ -1,0 +1,3 @@
+interface:
+  display_name: "Graphite"
+  short_description: "Manage Graphite branches and stacked pull requests"
