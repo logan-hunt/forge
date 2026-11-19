@@ -1,6 +1,6 @@
 {
   "name": "forge",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Portable coding workflow skills for investigation, design, review, research and publishing, with optional setup hooks.",
   "author": {
     "name": "Logan Hunt",
