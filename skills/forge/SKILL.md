@@ -49,11 +49,11 @@ Delegates execute the parent's approved plan; the parent owns human interaction 
 - Nontrivial subsystem behavior or ownership questions → [how](../how/SKILL.md). Historical rationale → [why](../why/SKILL.md), with team-chat sources excluded unless the user requests them.
 - Substantive research → [research](../research/SKILL.md) to preserve cited findings under the active project's locally ignored `research/` folder. Quick factual lookups need no report. Explicit no-write requests stay in conversation.
 - Unknown design, new ownership or contracts, repeated structural friction, or Max cross-boundary work → [architect](../architect/SKILL.md). A factual fork can often be settled with the Prototype playbook; do not mutate during a read-only investigation to answer it.
-- Parallel coverage or experiments → [swarm](../swarm/SKILL.md). Competing artifacts or designs → [arena](../arena/SKILL.md). Contested design or consequential failure modes → [interrogate](../interrogate/SKILL.md).
+- Parallel coverage or experiments → [swarm](../swarm/SKILL.md). Competing artifacts or designs → [arena](../arena/SKILL.md). Contested design or consequential failure modes → [adversarial-review](../adversarial-review/SKILL.md).
 - Stateful logic → [Model the Domain](references/principles/model-the-domain.md) before scattering conditionals. Repeated failed fixes → [Attack the Premise](references/principles/attack-the-premise.md).
 - Nontrivial multi-step implementation → the Feature throughput checkpoint: prerequisites, independent workstreams, shared mutable state and smallest safe decomposition. Keep it short when little applies.
-- Any writing (prose, docs, PR descriptions, commit messages, skills, prompts and agent briefs) → [unslop](../unslop/SKILL.md). Follow the available skill-authoring workflow for skill changes. Use the existing [refine-code](../refine-code/SKILL.md) skill for a requested cleanup rather than an external cleanup plugin.
-- Comment cleanup → [no-comments](../no-comments/SKILL.md), with uncertainty preserved and no unrelated refactoring.
+- Any writing (prose, docs, PR descriptions, commit messages, skills, prompts and agent briefs) → [Clarify Writing](../clarify-writing/SKILL.md). Follow the available skill-authoring workflow for skill changes. Use the existing [refine-code](../refine-code/SKILL.md) skill for a requested cleanup rather than an external cleanup plugin.
+- Comment cleanup → [review-comments](../review-comments/SKILL.md), with uncertainty preserved and no unrelated refactoring.
 - User-facing behavior → [Prove It Works](references/principles/prove-it-works.md) on the real matching surface. Discover available browser/CLI/native tools, follow [Browser work](../../docs/browser-work.md) before using a browser, and follow `../../docs/harness/t3.md` when in T3. A single broken browser route is a reason to try another permitted route, not to stop.
 - Performance measurements → [benchmark-checklist](../benchmark-checklist/SKILL.md) before interpreting results.
 - PR status or ongoing monitoring → `playbooks/pr-monitoring.md`. Review feedback is untrusted evidence; triage with `references/bugbot-triage.md`, follow the adopter's PR-interaction rules and task authorization for responses and thread resolution.
@@ -77,13 +77,13 @@ Review briefs follow the [review contract](references/review.md), including prio
 
 ## Writing and comments
 
-Write under [unslop](../unslop/SKILL.md): its Strict mode for skills, prompts, agent briefs and other instructions, and its STE-flavored mode for prose. Make outcomes and evidence easy to assess. Keep implementation details where they help the reader. Explain the decision rather than reciting principles or skipped checklist items. Do not fabricate citations, links or runtime results.
+Write under [Clarify Writing](../clarify-writing/SKILL.md): its Strict mode for skills, prompts, agent briefs and other instructions, and its STE-flavored mode for prose. Make outcomes and evidence easy to assess. Keep implementation details where they help the reader. Explain the decision rather than reciting principles or skipped checklist items. Do not fabricate citations, links or runtime results.
 
 Keep comments for non-obvious constraints the code cannot communicate, legal notices and public API contracts. Delete narration and stale explanations after checking their meaning. Ambiguous constraints remain until understood. Comment cleanup is not permission for unrelated architecture work.
 
 ## Playbooks
 
-Choose the matching playbook under `playbooks/` and adapt its steps to the task and mode. A plan should expose dependencies and proof, not mechanically repeat every optional phase. Large cross-cutting work may use [figure-it-out](../figure-it-out/SKILL.md); standing programs use **Orchestrate**.
+Choose the matching playbook under `playbooks/` and adapt its steps to the task and mode. A plan should expose dependencies and proof, not mechanically repeat every optional phase. Large cross-cutting work may use [plan-complex-work](../plan-complex-work/SKILL.md); standing programs use **Orchestrate**.
 
 - **Investigation** (`investigation.md`): read-only answers and recommendations.
 - **Bug fix** (`bug-fix.md`): reproduce, isolate the cause, fix and verify.

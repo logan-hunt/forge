@@ -1,12 +1,12 @@
 ---
-name: no-comments
+name: review-comments
 description: Review comments in a scoped change, remove redundant narration, and preserve
-  useful explanations and contracts. Use for /no-comments or comment cleanup before
+  useful explanations and contracts. Use for /review-comments or comment cleanup before
   review.
 disable-model-invocation: false
 ---
 
-# No comments
+# Review Comments
 
 Use the caller’s files or diff. Otherwise inspect the current task diff against its verified base, including relevant working-tree changes. Preserve unrelated files.
 

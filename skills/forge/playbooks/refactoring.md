@@ -2,7 +2,7 @@
 
 **You own the contract. The structure changes. The behavior does not.** Distinct from Feature, which adds behavior, and Bug fix, which corrects it.
 
-If the cleanup reveals a missing feature or a real bug, report it separately and keep the structural change against the pinned contract. A redesign is allowed, but name it and route to Feature. Large or cross-cutting structural work belongs to the [figure-it-out](../../figure-it-out/SKILL.md) skill. This playbook is the focused-to-medium change.
+If the cleanup reveals a missing feature or a real bug, report it separately and keep the structural change against the pinned contract. A redesign is allowed, but name it and route to Feature. Large or cross-cutting structural work belongs to the [plan-complex-work](../../plan-complex-work/SKILL.md) skill. This playbook is the focused-to-medium change.
 
 1. Pin the behavior contract first. Run the [how](../../how/SKILL.md) skill over the affected subsystem to learn the contract, then identify a meaningful existing test, snapshot or equivalence check that captures the affected behavior before structure moves. Add a focused pin when the preservation risk warrants it; whitespace or a straightforward local rename does not need a new harness. Type check and lint alone do not prove behavioral equivalence for a substantive reshape.
 2. Name the structure the code is missing per [Model the Domain](../references/principles/model-the-domain.md). Boring code stays when the shape is already clear and local. The reshape must delete branches or invalid states, not add indirection.

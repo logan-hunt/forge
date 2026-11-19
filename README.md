@@ -66,6 +66,23 @@ The script exposes skills through `.agents/skills`, `.claude/skills` and `.curso
 
 When upgrading, use [How](skills/how/SKILL.md) for former Teach walkthroughs. Ponytail’s [Simplify existing code](skills/ponytail/SKILL.md#simplify-existing-code) section replaces Laziness Protocol and Subtract Before You Add. Find the other former principle skills by task in the [Forge principles index](skills/forge/references/principles.md). Forge and its playbooks load these references on demand. Start a new session to refresh skill discovery.
 
+Forge 0.4 uses the following command names.
+
+Former command | Current command
+--- | ---
+`figure-it-out` | [`plan-complex-work`](skills/plan-complex-work/SKILL.md)
+`in-your-own-words` | [`restate-goal`](skills/restate-goal/SKILL.md)
+`interrogate` | [`adversarial-review`](skills/adversarial-review/SKILL.md)
+`ketchup` | [`recap-chat`](skills/recap-chat/SKILL.md)
+`no-comments` | [`review-comments`](skills/review-comments/SKILL.md)
+`recall` | [`total-recall`](skills/total-recall/SKILL.md)
+`sharpen` | [`refine-prompt`](skills/refine-prompt/SKILL.md)
+`statechart` | [`statechart-diagram`](skills/statechart-diagram/SKILL.md)
+`typescript-best-practices` | Removed. Follow your repository’s TypeScript conventions.
+`unslop` | [`clarify-writing`](skills/clarify-writing/SKILL.md)
+
+Git Prune is no longer bundled. Use your own cleanup procedure or separately installed skill.
+
 ## Hook and settings
 
 Installing the plugin does not install hooks or replace user instructions. Run `forge-setup` for the optional Forge hook, which reports the Forge mode and Ponytail level, for the selected hosts and scope. From the repository root:
@@ -87,7 +104,7 @@ Standard and Max use a separate reviewer agent, preferring another available pro
 
 [Forge policy](docs/policy.md) defines required plan approval, review and publication boundaries. Full-send is an explicit task-scoped grant. Repository instructions and user authorization govern PR comments, reviews and thread resolution. Git helpers follow the repository's conventions; ticket creation is conditional on its workflow. Graphite is used only when already configured and usable.
 
-T3 and native Claude Code have [host adapters](docs/harness/README.md). Other hosts use their current tools and limitations. Read-only requests remain nonmutating. Manifests and command names alone do not prove runtime discovery or delegation. Python 3.10+ is required for setup, configuration and the Forge hook. Statechart has separate TypeScript, Java/TLC and first-run download requirements documented in its skill.
+T3 and native Claude Code have [host adapters](docs/harness/README.md). Other hosts use their current tools and limitations. Read-only requests remain nonmutating. Manifests and command names alone do not prove runtime discovery or delegation. Python 3.10+ is required for setup, configuration and the Forge hook. The [Statechart Diagram skill](skills/statechart-diagram/SKILL.md) has separate TypeScript, Java/TLC and first-run download requirements documented in its skill.
 
 ## Repository layout
 
@@ -108,7 +125,7 @@ python3 -m venv .venv
 claude plugin validate .
 ```
 
-Tests use temporary homes and repositories. They do not install hooks into the current user's environment. PyYAML is needed only for development validation. The statechart suite is separate under `skills/statechart/scripts`. Report runtime host loading separately from static and isolated verification.
+Tests use temporary homes and repositories. They do not install hooks into the current user's environment. PyYAML is needed only for development validation. The Statechart Diagram suite is separate under `skills/statechart-diagram/scripts`. Report runtime host loading separately from static and isolated verification.
 
 To release a change, bump `version` in all three plugin manifests: `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json` and `.cursor-plugin/plugin.json`.
 

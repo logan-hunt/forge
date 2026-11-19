@@ -1,10 +1,10 @@
 ---
-name: unslop
-description: "Write or rewrite English so that a person or an agent cannot misread it. Applies Simplified Technical English (ASD-STE100) rules and a scan for AI writing tells. Use for all writing: docs, PR descriptions, commit messages, reports, chat replies, skills, prompts, agent briefs, tool descriptions, error messages and status text. Also use when text reads as dense, hedged, or easy to misparse. Triggers: unslop, disambiguate, STE100 rewrite, plain-language rewrite, rewrite so an agent cannot misread this. Not for creative or marketing copy."
+name: clarify-writing
+description: "Write or rewrite English so that a person or an agent cannot misread it. Applies Simplified Technical English (ASD-STE100) rules and a scan for AI writing tells. Use for all writing: docs, PR descriptions, commit messages, reports, chat replies, skills, prompts, agent briefs, tool descriptions, error messages and status text. Also use when text reads as dense, hedged, or easy to misparse. Triggers: clarify writing, disambiguate, STE100 rewrite, plain-language rewrite, rewrite so an agent cannot misread this. Not for creative or marketing copy."
 disable-model-invocation: false
 ---
 
-# Unslop: Simplified Technical English (ASD-STE100)
+# Clarify Writing
 
 ASD-STE100 is a controlled-language standard built by the aerospace and defense industry (ASD, the AeroSpace and Defense Industries Association of Europe) to stop maintenance technicians from misreading English instructions. The standard removes the two biggest sources of misreading: words with more than one meaning, and sentences with more than one possible structure.
 

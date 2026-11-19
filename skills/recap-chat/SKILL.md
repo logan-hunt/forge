@@ -1,10 +1,10 @@
 ---
-name: ketchup
-description: Summarize what changed in this chat and the decisions still waiting on the user. Use for /ketchup or a catch-up request.
+name: recap-chat
+description: Summarize what changed in this chat and the decisions still waiting on the user. Use for /recap-chat or a catch-up request.
 disable-model-invocation: false
 ---
 
-# Ketchup
+# Recap Chat
 
 Catch the user up from their last human message before this request. Notifications and delegate results do not reset that point.
 
@@ -16,4 +16,4 @@ List every decision still waiting on the user, including earlier unanswered ones
 
 Keep the recap proportionate to what changed. Show existing screenshots or a small diagram when they make a visible change or dependency easier to understand. A short text answer is enough when no picture helps.
 
-If nothing changed and no decision is pending, say so and stop. Otherwise name any remaining work you can continue. Follow the adopter's writing style and the [unslop](../unslop/SKILL.md) skill.
+If nothing changed and no decision is pending, say so and stop. Otherwise name any remaining work you can continue. Follow the adopter's writing style and the [Clarify Writing](../clarify-writing/SKILL.md) skill.

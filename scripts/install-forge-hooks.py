@@ -10,7 +10,7 @@ import shutil
 import sys
 
 from forge_config import (MODES, PONYTAIL_LEVELS, config_path, new_backup_folder, project_root, read_json,
-                          validate_config, write_json)
+                          settings_with_current_roles, write_json)
 
 EVENTS = ('SessionStart', 'UserPromptSubmit', 'SubagentStart')
 # Claude Code names its edit tools; Codex reports every file edit as apply_patch.
@@ -133,8 +133,7 @@ def planned_changes(source, home, python, install, settings, project=None, hosts
 
     if settings:
         path = config_path('project' if project else 'user', home, project)
-        current = read_json(path)
-        validate_config(current)
+        current = settings_with_current_roles(read_json(path))
         desired = {**current, **settings}
         if desired != current:
             described = ', '.join(f'{key} {value}' for key, value in settings.items())

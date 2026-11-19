@@ -19,7 +19,7 @@ A prompt states the intent and the check for done. The playbook supplies the ste
 ## Load the context first
 
 - For a noisy report, ask the agent to restate the underlying issue in its own words and in plain English before it does anything else. A misreading shows up before any code exists.
-- In a fresh chat, `/recall` earlier work on the topic. Old chats hold context that the new agent lacks.
+- In a fresh chat, `/total-recall` earlier work on the topic. Old chats hold context that the new agent lacks.
 - Before a change to unfamiliar code, ask `/how` for the mechanics and `/why` for the reasons. An agent with no traced model fixes the symptom at the first plausible spot.
 - Ask `/how` to trace one failing example through the proposed fix.
 

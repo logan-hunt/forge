@@ -7,6 +7,17 @@ from forge_config import project_root
 
 HOSTS = ('agents', 'claude', 'cursor')
 RETIRED_SKILLS = (
+    'figure-it-out',
+    'in-your-own-words',
+    'interrogate',
+    'ketchup',
+    'no-comments',
+    'recall',
+    'sharpen',
+    'statechart',
+    'typescript-best-practices',
+    'unslop',
+    'git-prune',
     'principle-attack-the-premise',
     'principle-boundary-discipline',
     'principle-build-the-lever',
@@ -31,6 +42,7 @@ RETIRED_SKILLS = (
     'principle-test-behavior-not-implementation',
     'principle-type-system-discipline',
     'teach',
+    'technical-writing',
 )
 
 

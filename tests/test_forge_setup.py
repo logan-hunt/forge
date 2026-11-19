@@ -139,6 +139,26 @@ class SetupTests(unittest.TestCase):
             activation.activate(PACKAGE, self.project, apply=True, remove=True)
         self.assertEqual(link.resolve(), other)
 
+    def test_renamed_reviewer_role_preserves_user_and_project_overrides(self):
+        legacy = 'interrogate reviewers'
+        role = 'adversarial-review reviewers'
+        user = forge_config.config_path('user', self.home, self.project)
+        project = forge_config.config_path('project', self.home, self.project)
+        project.parent.mkdir(parents=True)
+        target = [{'providerInstanceId': 'provider', 'model': 'reviewer'}]
+        user.write_text(json.dumps({'roles': {legacy: target}}))
+
+        effective = forge_config.load_config(self.home, self.project)['roles']
+        self.assertEqual(effective[role], target)
+        self.assertNotIn(legacy, effective)
+        self.assertIn(legacy, json.loads(user.read_text())['roles'])
+
+        project.write_text(json.dumps({'roles': {legacy: target, role: None}}))
+        self.assertIsNone(forge_config.load_config(self.home, self.project)['roles'][role])
+        with contextlib.redirect_stdout(io.StringIO()):
+            forge_config.update_config(project, {'roles': {legacy: target}}, self.home, apply=True)
+        self.assertEqual(json.loads(project.read_text())['roles'], {role: target})
+
     def test_model_overrides_merge_by_role_and_null_restores_inheritance(self):
         user = forge_config.config_path('user', self.home, self.project)
         project = forge_config.config_path('project', self.home, self.project)

@@ -1,13 +1,13 @@
 ---
-name: figure-it-out
+name: plan-complex-work
 description: 'Design an auditable playbook when no narrower one fits: a large migration,
   an ambitious multi-part change, or work a human reviews after stepping away. Scales
-  rigor to the task, runs a hypothesis loop, and logs decisions. Use for /figure-it-out
-  or ''figure it out''.'
+  rigor to the task, runs a hypothesis loop, and logs decisions. Use for /plan-complex-work
+  or ''plan complex work''.'
 disable-model-invocation: true
 ---
 
-# Figure it out
+# Plan Complex Work
 
 When the task matches no playbook, design one. The deliverable before any code is the workflow itself: a sequence of phases that scales rigor to the task, runs the scientific method, and leaves a decision trail a human can audit after stepping away.
 
@@ -46,7 +46,7 @@ Each unit is an experiment. State the hypothesis, make the smallest change, meas
 
 ## Phase D: Keep the audit trail
 
-Record the run’s decisions, evidence and results. figure-it-out's work is usually ambitious enough to commit the trail so the reviewer can read it in the PR. The trail plus the diff is what lets the human come back and trust the work.
+Record the run’s decisions, evidence and results. These projects are usually large enough to commit the trail so the reviewer can read it in the PR. The trail plus the diff is what lets the human come back and trust the work.
 
 ## Phase E: Verify and hand back
 

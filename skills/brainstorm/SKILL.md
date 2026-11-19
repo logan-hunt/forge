@@ -15,7 +15,7 @@ Read what a permitted read can settle: the code, the instructions, the ticket, e
 
 ## 2. Restate
 
-Say in one or two sentences what you think the goal is and what problem it solves, as [in-your-own-words](../in-your-own-words/SKILL.md) does. Name what you assumed.
+Say in one or two sentences what you think the goal is and what problem it solves, as [restate-goal](../restate-goal/SKILL.md) does. Name what you assumed.
 
 ## 3. Ask
 
@@ -28,7 +28,7 @@ Look for questions here:
 - Who uses this, and what do they do today without it?
 - What is the smallest version worth having? What is out of scope?
 - What must not change?
-- The four angles of [sharpen](../sharpen/SKILL.md): what an expert would do that was not asked for, the rawest material to start from, the methods and tools to use, and what other than you or the user would show the result is right.
+- The four angles of [refine-prompt](../refine-prompt/SKILL.md): what an expert would do that was not asked for, the rawest material to start from, the methods and tools to use, and what other than you or the user would show the result is right.
 
 Leave the user's choices open. Do not decide for them, and do not ask about how to build it; that belongs to the plan. Stop when another answer would not change the plan.
 

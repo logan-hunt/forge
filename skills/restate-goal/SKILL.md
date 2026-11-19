@@ -1,7 +1,7 @@
 ---
-name: in-your-own-words
+name: restate-goal
 description: Restate in your own words what you think the user's goals are and what
-  problem they're trying to solve. Use for /in-your-own-words.
+  problem they're trying to solve. Use for /restate-goal.
 disable-model-invocation: true
 ---
 

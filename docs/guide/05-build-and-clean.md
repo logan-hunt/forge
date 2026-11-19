@@ -6,4 +6,4 @@ Divide work by ownership and dependencies. Give delegates the goal, allowed path
 
 Prefer a lever for repeatable work or difficult proof. Reuse an existing command or harness when it already meets the need. A new script earns its maintenance through deterministic work or verification, not merely because the task is nontrivial.
 
-No-comments removes narration and stale claims after understanding them. Keep useful constraints and ambiguous warnings until verified. Cleanup must not become an unrequested architectural rewrite.
+Review Comments removes narration and stale claims after understanding them. Keep useful constraints and ambiguous warnings until verified. Cleanup must not become an unrequested architectural rewrite.

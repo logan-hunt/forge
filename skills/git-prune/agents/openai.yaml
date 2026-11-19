@@ -1,7 +1,0 @@
-interface:
-  display_name: Git Prune
-  short_description: Delete merged/closed Graphite branches and their worktrees
-  default_prompt: Use $git-prune to remove local branches and worktrees for merged
-    or closed PRs in my repos.
-policy:
-  allow_implicit_invocation: false

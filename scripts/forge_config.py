@@ -85,11 +85,21 @@ def validate_config(config):
         validate_target(target)
 
 
+def settings_with_current_roles(settings):
+    roles = settings.get('roles')
+    if isinstance(roles, dict) and 'interrogate reviewers' in roles:
+        roles = roles.copy()
+        old_target = roles.pop('interrogate reviewers')
+        roles.setdefault('adversarial-review reviewers', old_target)
+        settings = {**settings, 'roles': roles}
+    validate_config(settings)
+    return settings
+
+
 def load_config(home, project):
     result = {'defaultMode': 'standard', 'ponytail': 'full', 'roles': read_json(PACKAGE / 'models.json')['roles']}
     for scope in ('user', 'project'):
-        settings = read_json(config_path(scope, home, project))
-        validate_config(settings)
+        settings = settings_with_current_roles(read_json(config_path(scope, home, project)))
         result = {**result, **settings, 'roles': {**result['roles'], **settings.get('roles', {})}}
     return result
 
@@ -112,14 +122,14 @@ def write_json(path, value):
 
 
 def update_config(path, changes, home, apply=False):
-    current = read_json(path)
-    validate_config(current)
+    stored = read_json(path)
+    current = settings_with_current_roles(stored)
+    changes = settings_with_current_roles(changes)
     desired = {**current, **changes}
     roles = {**current.get('roles', {}), **changes.get('roles', {})}
     if roles:
         desired['roles'] = roles
-    validate_config(desired)
-    if desired == current:
+    if desired == stored:
         return False
     print(f'{"UPDATE" if apply else "WOULD UPDATE"} {path}')
     if apply:

@@ -7,7 +7,7 @@ Investigation requests leave the researched code and services unchanged. They pr
 1. Route through the [how](../../how/SKILL.md) skill. For motivation questions, also route through the [why](../../why/SKILL.md) skill.
 2. Keep coordination proportional to the investigation; no implementation plan is required just to save findings.
 3. Produce the `how`-shaped output (Overview / Key Concepts / How It Works / Where Things Live / Gotchas), or a recommendation with a tradeoffs table if the request is a decision between alternatives.
-4. Apply the [unslop](../../unslop/SKILL.md) skill to the reply.
+4. Apply the [Clarify Writing](../../clarify-writing/SKILL.md) skill to the reply.
 
 No publication or monitoring. Architectural analysis may use architect in design-only mode; preserve the read-only scope. Hand back before implementation unless the user already authorized it.
 

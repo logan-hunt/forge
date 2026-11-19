@@ -16,7 +16,7 @@
     "arena runners": null,
     "arena cross-judge pool": null,
     "architect runners": null,
-    "interrogate reviewers": null,
+    "adversarial-review reviewers": null,
     "reflect judgment": null,
     "feature": null,
     "refactoring": null,

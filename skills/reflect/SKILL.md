@@ -45,14 +45,9 @@ Present the synthesizer's full Accepted / Rejected / Backlog output and wait for
 
 Keep Backlog items in the reply. Do not create unrelated tickets, edit instructions or memories, or contact team chat without explicit authorization.
 
-Never edit an installed plugin cache. Before approval, identify the adopter's owned source and show the destination. After approval, edit that source; create an owned copy first when necessary. Follow the normal publication policy after approved edits; approval of a draft alone is not initial-publication permission.
+Never edit an installed plugin cache. Before approval, identify the adopter's owned source and show the destination. After approval, edit the source named in each approved row; create an owned copy first when necessary. Follow the normal publication policy after approved edits; approval of a draft alone is not initial-publication permission.
 
-Follow each approved row's Routing exactly:
-
-- Trivial existing-skill edit (a one-line bullet, a tightened sentence, a stale fact corrected): the parent does it directly.
-- Substantive existing-skill edit (a new section, a new pattern table, more than ~10 lines): hand to the available `skill-creator` skill and run its draft / test / iterate loop.
-- `tune description: <skill path>` (the skill exists but didn't trigger when it should have): hand to `skill-creator` and evaluate whether the revised description routes the intended scenarios correctly.
-- `new skill via skill-creator: <kebab-name>`: hand creation to `skill-creator`. Do not invent the shape ad hoc.
+Apply a trivial approved edit directly. For larger edits, new skills and description tuning, use the [skill authoring playbook](../forge/playbooks/authoring-a-skill.md). For description changes, check whether the skill is selected on the intended requests.
 
 If your environment ships a SKILL.md validator, run it on every touched skill before declaring done.
 
