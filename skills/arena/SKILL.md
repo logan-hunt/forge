@@ -18,7 +18,7 @@ Every candidate gets the same prompt, so the prompt is the contract.
 1. State the artifact each candidate is producing.
 2. Derive the rubric, 3-6 concrete gradeable criteria for what success looks like on *this* task. It is the picker's tool in Phase D. Candidates only see the task.
 3. Pick runners from the `arena runners` role resolved through [Forge setup](../forge-setup/SKILL.md), using [host delegation](../../docs/harness/README.md). When the role inherits, use separate candidates on the active model. Preserve explicitly configured or requested provider diversity. If a requested role is unavailable, report the missing capability and ask for an alternative instead of silently substituting a model. Use the same model for multiple candidates only when the task calls for generation diversity rather than a mixed-model review.
-4. Give each candidate its own output location, per the [separate-before-serializing-shared-state](../principle-separate-before-serializing-shared-state/SKILL.md) principle. Use separate checkouts only when explicitly requested by the user, through the active host; never create a child checkout in the shell. Otherwise use separate scratch artifacts or sequence edits in the starting checkout. For plan-only or read-only requests, candidates return their packages in the delegation result without creating checkouts or writing files. Only an explicit artifact request authorizes the corresponding output files. When implementation candidates need the current uncommitted state, provide the scoped patch and base identity through the host-supported mechanism; do not assume a fresh worktree contains it.
+4. Give each candidate its own output location, per the [separate-before-serializing-shared-state](../forge/references/principles/separate-before-serializing-shared-state.md) principle. Use separate checkouts only when explicitly requested by the user, through the active host; never create a child checkout in the shell. Otherwise use separate scratch artifacts or sequence edits in the starting checkout. For plan-only or read-only requests, candidates return their packages in the delegation result without creating checkouts or writing files. Only an explicit artifact request authorizes the corresponding output files. When implementation candidates need the current uncommitted state, provide the scoped patch and base identity through the host-supported mechanism; do not assume a fresh worktree contains it.
 
 ## Phase B: Fan out
 
@@ -34,17 +34,17 @@ After all Phase B candidates complete, resolve the `arena cross-judge pool` role
 
 Read every candidate end to end before picking. Score each against the rubric criterion by criterion, not on holistic feel, and compare with the cross-judge when Phase C ran one. Agreement on the base confirms the pick. Disagreement means one of you is biased or the rubric was ambiguous. Read both rationales before deciding.
 
-Pick the base a future maintainer can extend most easily without breaking invariants. When two feel tied, prefer the cleaner boundary or smaller API, per the Laziness Protocol.
+Pick the base a future maintainer can extend most easily without breaking invariants. When two feel tied, prefer the cleaner boundary or smaller API.
 
 ## Phase E: Graft
 
-Walk each losing candidate once more for what is worth porting into the base, usually one or two things per candidate, not most of it. Fold each graft in by hand, per the [redesign-from-first-principles](../principle-redesign-from-first-principles/SKILL.md) principle skill, so the result stays coherent under one mental model. Don't paste mechanically.
+Walk each losing candidate once more for what is worth porting into the base, usually one or two things per candidate, not most of it. Fold each graft in by hand, per the [redesign-from-first-principles](../forge/references/principles/redesign-from-first-principles.md) principle, so the result stays coherent under one mental model. Don't paste mechanically.
 
 If the candidates converge on one shape, that is strong agreement. Note it and ship the consensus shape. No graft is needed. If they wildly diverge, Phase A was under-specified. Reframe and re-run rather than averaging the divergence.
 
 ## Phase F: Verify
 
-Verify the synthesized artifact like any other output, per the [prove-it-works](../principle-prove-it-works/SKILL.md) principle skill. If verification finds a problem the arena missed, either Phase A was wrong (re-frame and re-run) or a candidate caught it and you missed the graft (go back to Phase E). Don't paper over it.
+Verify the synthesized artifact like any other output, per the [prove-it-works](../forge/references/principles/prove-it-works.md) principle. If verification finds a problem the arena missed, either Phase A was wrong (re-frame and re-run) or a candidate caught it and you missed the graft (go back to Phase E). Don't paper over it.
 
 ## Outputs
 

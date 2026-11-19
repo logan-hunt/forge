@@ -86,7 +86,7 @@ def check(package):
             failures.append(f'{path.relative_to(package)}: {error}')
 
     for path in package.rglob('*.md'):
-        if any(part in ('node_modules', '.venv') for part in path.parts):
+        if path.is_relative_to(package / 'research') or any(part in ('node_modules', '.venv') for part in path.parts):
             continue
         prose = markdown_prose(path.read_text())
         prose = re.sub(r'`[^`\n]*`', '', prose)
@@ -101,7 +101,7 @@ def check(package):
                 failures.append(f'{path.relative_to(package)}: missing heading anchor {target}')
 
     for path in package.rglob('*.json'):
-        if any(part in ('node_modules', '.venv') for part in path.parts):
+        if path.is_relative_to(package / 'research') or any(part in ('node_modules', '.venv') for part in path.parts):
             continue
         try:
             json.loads(path.read_text())

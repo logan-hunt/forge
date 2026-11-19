@@ -53,7 +53,7 @@ copilot plugin install forge@logan-hunt
 
 ### Local checkout
 
-Clone the repository, or keep it in a user directory such as `~/.agents/forge`, and link the skills from its root. Both commands preview; add `--apply` to create the links.
+Clone the repository, or keep it in a user directory such as `~/.agents/forge`, and link the skills from its root. Both commands preview the changes. Add `--apply` to create current links and remove direct links to retired Forge skills.
 
 ```sh
 git clone https://github.com/logan-hunt/forge.git
@@ -62,9 +62,9 @@ python3 scripts/activate-forge.py --scope user
 python3 scripts/activate-forge.py --scope project --project /path/to/project
 ```
 
-The script exposes skills through `.agents/skills`, `.claude/skills` and `.cursor/skills` at the selected scope. Use repeated `--host agents|claude|cursor` flags to select roots. Existing skills are preserved; collisions stop installation. `--remove --apply` removes only links to this package. Keep the checkout in place while links or hook commands refer to it. Symlink installation needs filesystem support for symlinks.
+The script exposes skills through `.agents/skills`, `.claude/skills` and `.cursor/skills` at the selected scope. Use repeated `--host agents|claude|cursor` flags to select roots. Existing skills are preserved; collisions stop installation. `--remove --apply` removes current skill links that resolve to this package and direct links to its retired skills. It preserves indirect links to retired skills. Keep the checkout in place while links or hook commands refer to it. Symlink installation needs filesystem support for symlinks.
 
-Start a new session after installing so the harness discovers the skills.
+When upgrading, use [How](skills/how/SKILL.md) for former Teach walkthroughs. Ponytail’s [Simplify existing code](skills/ponytail/SKILL.md#simplify-existing-code) section replaces Laziness Protocol and Subtract Before You Add. Find the other former principle skills by task in the [Forge principles index](skills/forge/references/principles.md). Forge and its playbooks load these references on demand. Start a new session to refresh skill discovery.
 
 ## Hook and settings
 

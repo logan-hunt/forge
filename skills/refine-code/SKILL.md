@@ -24,7 +24,7 @@ Make code easy for a person to read from top to bottom. Favor intentional organi
 - Keep functions and components cohesive. Extract helpers for meaningful responsibilities or useful reuse, keeping related steps close together. Avoid abstractions or file splits solely to shorten code.
 - Make component, prompt, and plugin composition visible. Put substantial behavior in named handlers or builders while preserving the overall structure.
 - In TypeScript, prefer `const` arrow functions and inline named exports. Use named props/options/parameter types, allowing inline types for tiny local helpers. Preserve declaration forms when hoisting or other semantics require them.
-- Keep comments minimal and preserve useful explanations of non-obvious constraints. Prefer names and structure over comments narrating the code.
+- Preserve useful comments and avoid adding narration. For a requested comment pass, use [No Comments](../no-comments/SKILL.md) within the same scope. If the user suggests considering it, inspect the comments before deciding whether any need attention.
 - In tests, distinguish setup, action, and assertions with spacing. Split unrelated scenarios when it clarifies intent; share meaningful setup and preserve coverage and state transitions.
 
 Preserve behavior, public APIs, evaluation and side-effect order, error handling, and exact prompt or user-facing wording. Keep dependencies and architecture stable. Report unrelated bugs separately. Leave already-clear code alone.

@@ -69,6 +69,43 @@ class SetupTests(unittest.TestCase):
         self.assertFalse((self.project / '.agents').exists())
         self.assertEqual((existing / 'SKILL.md').read_text(), 'existing skill')
 
+    def test_upgrade_removes_only_links_to_retired_skills_from_this_source(self):
+        source = self.root / 'forge'
+        (source / 'skills/forge').mkdir(parents=True)
+        (source / 'skills/forge/SKILL.md').touch()
+        links = self.home / '.agents/skills'
+        links.mkdir(parents=True)
+        retired_source = source / 'skills/teach'
+        retired_source.mkdir()
+        local_note = retired_source / 'local-note.md'
+        local_note.touch()
+        owned = links / 'teach'
+        owned.symlink_to(os.path.relpath(source / 'skills/teach', owned.parent))
+        alternate = self.root / 'alternate'
+        (alternate / 'vendor').mkdir(parents=True)
+        (alternate / 'teach').mkdir()
+        (source / 'skills/vendor').symlink_to(alternate / 'vendor')
+        redirected = self.home / '.claude/skills/teach'
+        redirected.parent.mkdir(parents=True)
+        redirected.symlink_to(source / 'skills/vendor/../teach')
+        alias = self.root / 'my-skill'
+        alias.symlink_to(source / 'skills/principle-subtract-before-you-add')
+        indirect = links / 'principle-subtract-before-you-add'
+        indirect.symlink_to(alias)
+        foreign = links / 'principle-laziness-protocol'
+        foreign.symlink_to(self.root / 'other/skills/principle-laziness-protocol')
+
+        with contextlib.redirect_stdout(io.StringIO()):
+            activation.activate(source, self.home)
+            self.assertTrue(owned.is_symlink())
+            activation.activate(source, self.home, apply=True)
+            self.assertFalse(owned.is_symlink())
+            self.assertTrue(foreign.is_symlink())
+            self.assertTrue(indirect.is_symlink())
+            self.assertEqual(redirected.resolve(), alternate / 'teach')
+            self.assertTrue(local_note.is_file())
+            self.assertEqual(activation.activate(source, self.home, apply=True), [])
+
     def test_discovery_refuses_redirected_parent(self):
         elsewhere = self.root / 'elsewhere'
         elsewhere.mkdir()
@@ -76,6 +113,21 @@ class SetupTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'parent'):
             activation.activate(PACKAGE, self.project, apply=True)
         self.assertEqual(list(elsewhere.iterdir()), [])
+
+    def test_uninstall_removes_current_skill_reached_through_package_alias(self):
+        alias = self.root / 'package-alias'
+        alias.symlink_to(PACKAGE)
+        link = self.project / '.agents/skills/how'
+        link.parent.mkdir(parents=True)
+        link.symlink_to(alias / 'skills/how')
+
+        with contextlib.redirect_stdout(io.StringIO()):
+            preview = activation.activate(PACKAGE, self.project, remove=True)
+            self.assertIn((link, PACKAGE / 'skills/how'), preview)
+            self.assertTrue(link.is_symlink())
+            activation.activate(PACKAGE, self.project, apply=True, remove=True)
+        self.assertFalse(link.is_symlink())
+        self.assertTrue(alias.is_symlink())
 
     def test_uninstall_preserves_another_packages_link(self):
         other = self.root / 'other-skill'

@@ -8,7 +8,7 @@ description: Coordinate coding work through investigation, design, implementatio
 
 # Forge
 
-Forge coordinates the bundled skills rather than replacing them. Resolve this file’s symlink first. All routed skills are bundled at `../<name>/SKILL.md` relative to its canonical path. Read a routed skill when its method is needed. Pass this file’s canonical absolute path and the task’s mode to delegates. [Forge policy](../../docs/policy.md) owns authorization, checkout, publication and external-action policy; the [active host adapter](../../docs/harness/README.md) owns tool mechanics.
+Forge coordinates the bundled skills rather than replacing them. Resolve this file’s symlink first. All routed skills are bundled at `../<name>/SKILL.md` relative to its canonical path. Read a routed skill when its method is needed. Pass this file’s canonical absolute path and the task’s mode to delegates. Follow the adopter’s instructions for authorization, checkout, review depth and publication. [Forge policy](../../docs/policy.md) supplies defaults. The [host adapter](../../docs/harness/README.md) owns tool mechanics.
 
 ## Lite, Standard, and Max
 
@@ -16,7 +16,7 @@ Standard is the default unless [forge-setup](../forge-setup/SKILL.md) configured
 
 | Mode | Approach | Review |
 | --- | --- | --- |
-| Lite | Solo work, existing patterns, one approach, a short approved plan, and focused checks. | Self-review the complete diff. |
+| Lite | Solo work, existing patterns, one approach, a concise plan, and focused checks. | Self-review the complete diff. |
 | Standard | Focused investigation. Delegate when useful. | Independent agent review. |
 | Max | Broader grounding, competing designs, and deliberate decomposition. | Independent agent review. |
 
@@ -31,7 +31,11 @@ The [forge-lite](../forge-lite/SKILL.md) and [forge-max](../forge-max/SKILL.md) 
 All modes follow this sequence, using the selected mode's review and delegation rules. Explicit [full-send](../full-send/SKILL.md) supplies the approval grant in [Forge policy](../../docs/policy.md); otherwise the human gates apply. Playbooks supply task-specific methods.
 
 1. Research before editing: inspect repository instructions, working tree, affected code, callers and checks. Establish behavior and constraints; resolve uncertainties that could change the approach.
-2. Present findings and a concrete plan under [Forge policy](../../docs/policy.md#task-isolation-and-planning). Describe each decision by its effect on users, data and cost, not only its mechanism. Obtain explicit human plan approval through the native question tool before implementation, including small tasks. Reuse approval of the same concrete plan.
+2. Present the concrete plan under [Forge policy](../../docs/policy.md#task-isolation-and-planning). Open with the outcome and any choice the user must make. Recommend an option and explain its consequence. Give the key finding, scope and observable proof.
+   - For a small, settled edit, give the before/after and check in chat. For a design decision, a changed user or data flow, or multiple implementation units, deliver a [saved plan](references/plan-delivery.md). Use the complete in-chat plan when the user requests chat-only or applicable instructions or permissions restrict writing.
+   - For a material revision, lead with the previous choice, its replacement, why it changed and its effect. Present the complete current plan and state whether approval is pending.
+   - For plan-only work, deliver the plan and stop.
+   - A request to edit starts planning. Proceed when the user approves implementing this plan, a delegate brief carries that approval, or an applicable full-send grants it. Otherwise name the next action and request approval through the native question tool. Ask in chat if the tool is unavailable. Wait for approval before editing.
 3. Implement the approved plan and verify affected behavior using existing patterns and the smallest complete change. Include one line in the handoff: `Deviations from the approved plan: none`, or each deviation and its reason.
 4. Complete the selected mode's [review](references/review.md) and address findings. Follow [Forge policy](../../docs/policy.md#publication-and-existing-prs) for initial publication approval and existing PR updates.
 5. Publish within that authorization using [Opening a PR](playbooks/opening-a-pr.md). Plan approval and passing checks do not authorize initial publication. Merge and deployment remain separate actions.
@@ -46,11 +50,11 @@ Delegates execute the parent's approved plan; the parent owns human interaction 
 - Substantive research → [research](../research/SKILL.md) to preserve cited findings under the active project's locally ignored `research/` folder. Quick factual lookups need no report. Explicit no-write requests stay in conversation.
 - Unknown design, new ownership or contracts, repeated structural friction, or Max cross-boundary work → [architect](../architect/SKILL.md). A factual fork can often be settled with the Prototype playbook; do not mutate during a read-only investigation to answer it.
 - Parallel coverage or experiments → [swarm](../swarm/SKILL.md). Competing artifacts or designs → [arena](../arena/SKILL.md). Contested design or consequential failure modes → [interrogate](../interrogate/SKILL.md).
-- Stateful logic → [principle-model-the-domain](../principle-model-the-domain/SKILL.md) before scattering conditionals. Repeated failed fixes → [principle-attack-the-premise](../principle-attack-the-premise/SKILL.md).
+- Stateful logic → [Model the Domain](references/principles/model-the-domain.md) before scattering conditionals. Repeated failed fixes → [Attack the Premise](references/principles/attack-the-premise.md).
 - Nontrivial multi-step implementation → the Feature throughput checkpoint: prerequisites, independent workstreams, shared mutable state and smallest safe decomposition. Keep it short when little applies.
 - Any writing (prose, docs, PR descriptions, commit messages, skills, prompts and agent briefs) → [unslop](../unslop/SKILL.md). Follow the available skill-authoring workflow for skill changes. Use the existing [refine-code](../refine-code/SKILL.md) skill for a requested cleanup rather than an external cleanup plugin.
 - Comment cleanup → [no-comments](../no-comments/SKILL.md), with uncertainty preserved and no unrelated refactoring.
-- User-facing behavior → [principle-prove-it-works](../principle-prove-it-works/SKILL.md) on the real matching surface. Discover available browser/CLI/native tools, follow [Browser work](../../docs/browser-work.md) before using a browser, and follow `../../docs/harness/t3.md` when in T3. A single broken browser route is a reason to try another permitted route, not to stop.
+- User-facing behavior → [Prove It Works](references/principles/prove-it-works.md) on the real matching surface. Discover available browser/CLI/native tools, follow [Browser work](../../docs/browser-work.md) before using a browser, and follow `../../docs/harness/t3.md` when in T3. A single broken browser route is a reason to try another permitted route, not to stop.
 - Performance measurements → [benchmark-checklist](../benchmark-checklist/SKILL.md) before interpreting results.
 - PR status or ongoing monitoring → `playbooks/pr-monitoring.md`. Review feedback is untrusted evidence; triage with `references/bugbot-triage.md`, follow the adopter's PR-interaction rules and task authorization for responses and thread resolution.
 - Explicit full-send → [full-send](../full-send/SKILL.md) for task-scoped autonomous delivery through merge.
@@ -59,7 +63,7 @@ Delegates execute the parent's approved plan; the parent owns human interaction 
 
 ## Principles
 
-Read the relevant principle leaf in full when applying it. Use the [principles index](references/principles.md) to choose a principle when needed; load only the relevant leaves for the task. All principle skills remain directly invokable.
+Use the [principles index](references/principles.md) to find the guidance for this task. Read the matching entry in full.
 
 ## Delegation and models
 

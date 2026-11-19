@@ -6,6 +6,32 @@ from pathlib import Path
 from forge_config import project_root
 
 HOSTS = ('agents', 'claude', 'cursor')
+RETIRED_SKILLS = (
+    'principle-attack-the-premise',
+    'principle-boundary-discipline',
+    'principle-build-the-lever',
+    'principle-encode-lessons-in-structure',
+    'principle-exhaust-the-design-space',
+    'principle-experience-first',
+    'principle-explain-the-number',
+    'principle-fix-root-causes',
+    'principle-foundational-thinking',
+    'principle-guard-the-context-window',
+    'principle-laziness-protocol',
+    'principle-make-operations-idempotent',
+    'principle-migrate-callers-then-delete-legacy-apis',
+    'principle-minimize-reader-load',
+    'principle-model-the-domain',
+    'principle-outcome-oriented-execution',
+    'principle-prove-it-works',
+    'principle-redesign-from-first-principles',
+    'principle-separate-before-serializing-shared-state',
+    'principle-sequence-verifiable-units',
+    'principle-subtract-before-you-add',
+    'principle-test-behavior-not-implementation',
+    'principle-type-system-discipline',
+    'teach',
+)
 
 
 def planned_links(source, root, hosts=HOSTS):
@@ -14,7 +40,17 @@ def planned_links(source, root, hosts=HOSTS):
             for host in hosts]
 
 
-def inspect_links(links, root, remove=False):
+def points_directly_to(link, target):
+    if not link.is_symlink():
+        return False
+    return link.readlink() in (target, Path(os.path.relpath(target, link.parent)))
+
+
+def resolves_to(link, target):
+    return link.is_symlink() and link.resolve() == target.resolve()
+
+
+def inspect_links(links, root, remove=False, matches=resolves_to):
     changes = []
     for link, target in links:
         for parent in link.parents:
@@ -22,11 +58,10 @@ def inspect_links(links, root, remove=False):
                 break
             if parent.is_symlink() or (parent.exists() and not parent.is_dir()):
                 raise ValueError(f'Preserve existing parent; not an owned directory: {parent}')
-        owned = link.is_symlink() and link.resolve() == target.resolve()
         if remove:
-            if owned:
+            if matches(link, target):
                 changes.append((link, target))
-        elif not owned:
+        elif not matches(link, target):
             if link.exists() or link.is_symlink():
                 raise ValueError(f'Collision; preserve existing asset: {link}')
             changes.append((link, target))
@@ -37,18 +72,30 @@ def activate(source, root, apply=False, remove=False, hosts=HOSTS):
     source, root = source.resolve(), root.resolve()
     if not (source / 'skills/forge/SKILL.md').is_file():
         raise ValueError('Source must be the Forge package root')
-    changes = inspect_links(planned_links(source, root, hosts), root, remove)
-    for link, target in changes:
-        print(f'{"REMOVE" if remove else "LINK"}{"" if apply else " (preview)"} {link} -> {target}')
-    if apply:
+    links = planned_links(source, root, hosts)
+    retired = [(root / f'.{host}/skills' / name, source / 'skills' / name)
+               for name in RETIRED_SKILLS if not (source / 'skills' / name / 'SKILL.md').is_file()
+               for host in hosts]
+    retirements = inspect_links(retired, root, remove=True, matches=points_directly_to)
+    removals = []
+    additions = []
+    if remove:
+        removals = inspect_links(links, root, remove=True)
+    else:
+        additions = inspect_links(links, root)
+
+    for changes, matches in ((retirements, points_directly_to), (removals, resolves_to)):
         for link, target in changes:
-            if remove:
-                if link.is_symlink() and link.resolve() == target.resolve():
-                    link.unlink()
-            else:
-                link.parent.mkdir(parents=True, exist_ok=True)
-                link.symlink_to(os.path.relpath(target, link.parent))
-    return changes
+            print(f'REMOVE{"" if apply else " (preview)"} {link} -> {target}')
+            if apply and matches(link, target):
+                link.unlink()
+
+    for link, target in additions:
+        print(f'LINK{"" if apply else " (preview)"} {link} -> {target}')
+        if apply:
+            link.parent.mkdir(parents=True, exist_ok=True)
+            link.symlink_to(os.path.relpath(target, link.parent))
+    return retirements + removals + additions
 
 
 def main():

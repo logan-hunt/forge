@@ -10,7 +10,7 @@ Swap in the real paths, skills, and done checks. Informal wording works.
 - `/forge investigate why <symptom>. give me what we know, what data you used, and your best hypotheses. don't change any code yet.`
 - `use /how to understand <subsystem>. then use /why to find out why it broke recently.`
 - `/recall my work on <topic> from last week, then read <issue>.`
-- `/teach me why you implemented it this way and not <other way>. what did you trade off?`
+- `/how does the change you just made work? walk me through the diff and show where its tradeoff matters for the caller.`
 - `/forge take over this branch. read the decision log, find what's done, and continue. don't redo finished work.`
 
 ## Build
@@ -27,7 +27,7 @@ Swap in the real paths, skills, and done checks. Informal wording works.
 
 - `/forge prototype a few options for <feature>. take screenshots or videos for me to compare.`
 - `/forge we need <feature>. /architect it first, and answer open questions with prototypes. let me review before proceeding.`
-- `/forge write a tutorial for how i would use <new package> first. then /teach me why it beats the current one.`
+- `/how would i use <new package>? walk me through one example and compare it with the current package.`
 - `ask /arena for a second opinion on this thread and our approach.`
 - `/forge turn this design into a plan. small verifiable PRs, each with its own verification steps.`
 - `/forge plan the migration of <library> to <target>. small verifiable PRs. the result must match the original exactly, bugs included.`

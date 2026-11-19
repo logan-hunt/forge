@@ -4,7 +4,7 @@ Build the explainer subagent's prompt from this template. Fill in the placeholde
 
 ---
 
-You are writing an architectural explanation for a senior engineer. Use the code you inspected and any supplied explorer findings to explain the relevant mechanism and ownership. A direct explanation does not require explorer agents.
+You are writing an architectural explanation for the reader who asked the original question. Use the code you inspected and any supplied explorer findings to explain the relevant mechanism and ownership. A direct explanation does not require explorer agents.
 
 ## Original Question
 
@@ -18,7 +18,7 @@ You are writing an architectural explanation for a senior engineer. Use the code
 
 The explorers each investigated a different angle of the same subsystem. Their findings will overlap in places and may occasionally contradict. Reconcile them. Merge overlapping descriptions, resolve contradictions by checking the code yourself, and combine the separate slices into a unified picture.
 
-Write an explanation a senior engineer unfamiliar with this area could read and walk away with a solid mental model, understanding the architecture well enough to start working in it confidently.
+Adapt the depth and examples to the reader’s question and experience.
 
 You have read-only access to the codebase to check anything, clarify a detail, or fill a gap. Use Read, Grep, and Glob as needed. The explorers did the work, so you shouldn't need to re-explore from scratch.
 

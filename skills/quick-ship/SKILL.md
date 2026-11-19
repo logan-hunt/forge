@@ -22,11 +22,9 @@ Discover available service tools and verify authenticated reads and repository a
 
 Review the complete task diff. Run the required checks and relevant behavior verification, using scoped formatting/lint fixes where appropriate. Preserve unrelated formatting. Report existing failures and unverified behavior separately.
 
-Complete the selected Forge mode's review, address findings and obtain the required initial-publication approval. Stage explicit task paths or hunks, then inspect the complete index before committing. Consolidate only this task's checkpoints into one coherent commit per PR layer. Do not squash ancestors or unrelated commits.
+Use [Publication and PR updates](../forge/playbooks/opening-a-pr.md) for review gates, branch selection and stack scope. Stage only the selected changes. Inspect the full index before committing.
 
-Use the repository's existing branch and intended base. Create a branch only at publication preparation when one is needed. In repositories already using a working Graphite setup, follow [Graphite](../graphite/SKILL.md), inspect actual stack scope and dry-run submission. If it is unavailable, unauthenticated or rejects an unsynced repository, use ordinary Git/GitHub within the same authorization, preserving the branch, base, remote work and force-with-lease protection. Do not initialize Graphite as a prerequisite.
-
-In ordinary Git repositories, use the native Git workflow to create the needed branch, commit/amend the selected change and push with its appropriate upstream. Inspect remote work before updating a published branch; an authorized rewrite uses force-with-lease. A new stacked PR uses the verified intended parent.
+When publication needs a new branch, create it from the intended parent at this stage. Use [Graphite](../graphite/SKILL.md) where configured and usable. For ordinary Git, commit or amend the selected change and push to its verified upstream. Inspect remote work before updating a published branch. Use force-with-lease for an authorized rewrite.
 
 ## Publish and verify
 

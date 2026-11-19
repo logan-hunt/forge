@@ -75,6 +75,13 @@ class ValidationTests(unittest.TestCase):
         self.skill.write_text(self.skill.read_text() + '\n~~~md\n[Example](missing.md#example)\n~~~\n`[Example](missing.md)`\n')
         self.assertEqual(self.failures(), [])
 
+    def test_local_research_reports_are_outside_the_package(self):
+        reports = self.root / 'research'
+        reports.mkdir()
+        (reports / 'findings.md').write_text('[Private evidence](/external/evidence.md)')
+        (reports / 'snapshot.json').write_text('partial record')
+        self.assertEqual(self.failures(), [])
+
     def test_development_environment_is_not_package_content(self):
         dependency = self.root / '.venv/dependency'
         dependency.mkdir(parents=True)

@@ -1,12 +1,14 @@
 # Forge policy
 
-Repository instructions, user authorization and host restrictions apply throughout. Forge supplies the workflow below; it does not replace an adopter's access, data, attribution or pull-request policies.
+Apply the adopter’s instructions and host restrictions first. Use these defaults where the adopter has no applicable rule.
 
 ## Task isolation and planning
 
 Inspect repository instructions, branch, working tree, relevant callers and checks before editing. Preserve unrelated edits and staging. Work in the starting checkout and branch; create separate checkouts or change ancestry only when authorized.
 
 Present a concrete plan with scope, approach, reuse or removals, validation and unresolved decisions. Obtain explicit approval through the host's question tool before code edits, including small tasks. If no question tool is available, ask in conversation. Approval of the same plan counts; material changes need approval again. Research-only, plan-only and review-only requests do not authorize implementation. Delegates execute the parent's approved plan without a separate approval gate.
+
+Substantive planning includes writing local, Git-ignored plan artifacts under the [plan delivery procedure](../skills/forge/references/plan-delivery.md). This permission covers the plan and its local exclusion only. If the user, adopter or host restricts those writes, deliver the complete plan in chat.
 
 An explicitly invoked [full-send](../skills/full-send/SKILL.md) supplies its task-scoped approval grant. Discussing or authoring that skill does not activate it.
 

@@ -4,7 +4,9 @@ Use the active Forge mode: Lite self-reviews; Standard and Max use a separate re
 
 ## First pass
 
-Review the complete task diff against the approved behavior, affected callers, repository standards and verification evidence. Trace shared helpers and state changes beyond the immediate caller. Ask which legitimate state a new guard could reject, and whether the tested artifact contains the change.
+Give the reviewer the approved behavior, latest revision, expected proof and comparison base. For a stack, name the layer under review. Include committed, staged, unstaged and new files that belong to the task. Identify unrelated working-tree changes so they stay outside the review.
+
+Check each promised behavior against the implementation and its verification evidence. Check the same diff against repository standards and affected callers. Trace shared helpers and state changes beyond the immediate caller. Ask which legitimate state a new guard could reject, and whether the tested artifact contains the change.
 
 For each actionable finding, provide a location, concrete failure case, severity, supporting evidence and suggested correction. Distinguish verified defects from unverified concerns. A missing test result is a coverage gap, not proof of failure or success. Do not invent findings to fill a quota or expand the task with unrelated cleanup. Scores and reviewer agreement do not establish correctness.
 

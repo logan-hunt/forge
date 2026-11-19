@@ -37,7 +37,7 @@ Use the `reflect judgment` role for synthesis through the active host. It spot-c
 
 ## 4. Structural enforcement check
 
-Move any Accepted item that a lint rule, script, metadata flag, or runtime check would enforce more reliably to Backlog. See the [encode-lessons-in-structure](../principle-encode-lessons-in-structure/SKILL.md) principle skill.
+Move any Accepted item that a lint rule, script, metadata flag, or runtime check would enforce more reliably to Backlog. See the [encode-lessons-in-structure](../forge/references/principles/encode-lessons-in-structure.md) principle.
 
 ## 5. Apply
 

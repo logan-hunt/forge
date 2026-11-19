@@ -1,5 +1,7 @@
 import importlib.util
 from pathlib import Path
+import subprocess
+import sys
 import tempfile
 import unittest
 
@@ -56,6 +58,23 @@ class ResearchReportTests(unittest.TestCase):
         self.assertIn('<blockquote><p>A quoted line.</p></blockquote>', page)
         self.assertIn('var(--foreground, #1c1c1c)', page)
         self.assertNotRegex(page, r'<(script|link)[^>]*(src|href)="https?:')
+
+    def test_revised_plan_cli_preserves_previous_version_and_links_to_it(self):
+        def publish(version, content):
+            folder = self.folder / version
+            folder.mkdir()
+            source = folder / 'plan.md'
+            source.write_text(content)
+            subprocess.run([sys.executable, module.__file__, str(source)], check=True, capture_output=True)
+            self.assertEqual(source.read_text(), content)
+            return folder / 'plan.html'
+
+        first = publish('v1', '# Initial scope')
+        original = first.read_bytes()
+        second = publish('v2', '# Revised scope\n\n[Previous plan](../v1/plan.html)')
+        self.assertIn('<a href="../v1/plan.html">Previous plan</a>', second.read_text())
+        self.assertTrue((second.parent / '../v1/plan.html').samefile(first))
+        self.assertEqual(first.read_bytes(), original)
 
     def render(self, markdown):
         return module.render(markdown)

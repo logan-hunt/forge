@@ -3,7 +3,7 @@
 **You own the diagnosis. Instrument the live process, don't theorize from source.** The deliverable is a cited diagnosis, not a fix.
 
 1. Capture the live signal on the matching surface via an available surface driver under the active host policy: a CPU profile for a spinning process, a heap snapshot for a leak, a CDP trace for a visual glitch. A real artifact, not a guess.
-2. Reduce the artifact to the smoking gun: the function on the hot path, the retainer chain from the leaked object to a GC root, the loop firing without input. Parse large artifacts in a subagent (the [guard-the-context-window](../../principle-guard-the-context-window/SKILL.md) principle skill), keep the reduced finding in the main thread. Use the configured model role and supported host options, following Forge’s Delegation and models section.
+2. Reduce the artifact to the smoking gun: the function on the hot path, the retainer chain from the leaked object to a GC root, the loop firing without input. Parse large artifacts in a subagent (the [guard-the-context-window](../references/principles/guard-the-context-window.md) principle), keep the reduced finding in the main thread. Use the configured model role and supported host options, following Forge’s Delegation and models section.
 3. Prove the mechanism before believing it. Use permitted observations and a disposable local reproduction where useful. A diagnosis-only request does not authorize hotfixing a running service or changing production state. Ask for the concrete missing authorization if observing the mechanism requires a mutation.
 4. Map the finding back to source: file, symbol, the line that allocates or schedules.
 5. Throughput checkpoint stays one line: `throughput checkpoint: n/a, read-only forensics`.

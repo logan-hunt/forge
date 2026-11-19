@@ -33,7 +33,7 @@ Run the [arena](../arena/SKILL.md) skill with the design-sketch task and the Pha
 
 Resolve the `architect runners` panel through [Forge setup](../forge-setup/SKILL.md), using Arena’s host capability and provider-diversity rules.
 
-Design it twice. Require at least two structurally distinct candidates before synthesis, even when the first looks sufficient. This is the [exhaust-the-design-space](../principle-exhaust-the-design-space/SKILL.md) principle skill made concrete. Whole-shape alternatives, not point fixes inside one shape.
+Design it twice. Require at least two structurally distinct candidates before synthesis, even when the first looks sufficient. This is the [exhaust-the-design-space](../forge/references/principles/exhaust-the-design-space.md) principle made concrete. Whole-shape alternatives, not point fixes inside one shape.
 
 Screen every candidate against [`references/design-red-flags.md`](references/design-red-flags.md) before synthesis. Assume the next contributor is an agent that sees only the files it opened, copies the nearest example, and takes the shortest path that compiles. Prefer the design where a change that looks right from one file is right for the whole repo.
 
@@ -45,7 +45,7 @@ Arena returns one synthesized design package. Its synthesis decision fills the r
 
 Surface the synthesized design for plan approval; approval of the same concrete plan is reused. For an authorized implementation task, proceed once that plan is approved. A request to plan, evaluate or discuss stops at the design and recommendation.
 
-For authorized implementation, a local checkpoint can preserve the synthesis as the "scaffold first" mode of the [foundational-thinking](../principle-foundational-thinking/SKILL.md) principle. First publication still follows quick-ship; a design-only request does not authorize a commit. Planned and scoped breakage during fill-in is fine, per the [outcome-oriented-execution](../principle-outcome-oriented-execution/SKILL.md) principle skill. For adversarial pressure on the design before implementing, run the [interrogate](../interrogate/SKILL.md) skill on the synthesized sketch.
+For authorized implementation, a local checkpoint can preserve the synthesis as the "scaffold first" mode of the [foundational-thinking](../forge/references/principles/foundational-thinking.md) principle. First publication still follows quick-ship; a design-only request does not authorize a commit. Planned and scoped breakage during fill-in is fine, per the [outcome-oriented-execution](../forge/references/principles/outcome-oriented-execution.md) principle. For adversarial pressure on the design before implementing, run the [interrogate](../interrogate/SKILL.md) skill on the synthesized sketch.
 
 If the human pushes back on the shape (at approval or after the fact), treat that as Phase A evidence. Re-ground and re-run Phase B before writing more code.
 
@@ -55,7 +55,7 @@ Replace `not implemented` bodies with code, pseudocode with logic. The synthesiz
 
 ## Phase E: Scrap when the architecture is wrong
 
-If implementation keeps producing friction the sketch can't absorb, throw the sketch out. Don't bolt fixes onto a wrong design, per the [redesign-from-first-principles](../principle-redesign-from-first-principles/SKILL.md) and [fix-root-causes](../principle-fix-root-causes/SKILL.md) principle skills.
+If implementation keeps producing friction the sketch can't absorb, throw the sketch out. Don't bolt fixes onto a wrong design, per the [redesign-from-first-principles](../forge/references/principles/redesign-from-first-principles.md) and [fix-root-causes](../forge/references/principles/fix-root-causes.md) principles.
 
 The signal is a *pattern*, not single instances. Tells:
 
@@ -72,7 +72,7 @@ When you scrap:
 
 1. Re-run the [how](../how/SKILL.md) skill over what's been built.
 2. Redesign as if the new constraints had been day-one assumptions, per redesign-from-first-principles.
-3. Subtract before adding, per the [subtract-before-you-add](../principle-subtract-before-you-add/SKILL.md) principle skill. The new sketch should be smaller than the old one before it grows.
+3. Use [Ponytail’s refactoring guidance](../ponytail/SKILL.md#simplify-existing-code) to identify what the new design can remove.
 4. Return to Phase B and re-run arena.
 
 ## Outputs

@@ -2,7 +2,7 @@
 
 Use the available skill-creator workflow when the user requests a new or updated skill. Preserve the selected source and scope; never edit a plugin cache as a shortcut.
 
-Before proposing changes to instructions, skills or workflow, read relevant decision records identified by the adopter or repository. A fix for a friction entry or repeated correction must pass the bar and follow the form order in [Encode lessons in structure](../../principle-encode-lessons-in-structure/SKILL.md). Start with the actual request and relevant source. Prefer copying existing reusable material and making targeted changes when that preserves behavior. Keep descriptions precise and guidance progressive. Reference shared capabilities instead of copying conflicting authorization rules into every leaf.
+Before proposing changes to instructions, skills or workflow, read relevant decision records identified by the adopter or repository. A fix for a friction entry or repeated correction must pass the bar and follow the form order in [Encode lessons in structure](../references/principles/encode-lessons-in-structure.md). Start with the actual request and relevant source. Prefer copying existing reusable material and making targeted changes when that preserves behavior. Keep descriptions precise and guidance progressive. Reference shared capabilities instead of copying conflicting authorization rules into every leaf.
 
 Write skill and instruction text under the [unslop](../../unslop/SKILL.md) skill in its Strict mode, and run its `scripts/ste-lint.py` on the files you change.
 

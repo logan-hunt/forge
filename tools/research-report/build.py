@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Build a self-contained report.html from a research folder's findings.md.
+"""Render a research report or versioned plan as self-contained HTML.
 
-Usage: python3 build.py <research-folder>
+Usage: python3 build.py <research-folder> or python3 build.py <version-folder>/plan.md
 
-Markdown stays the source copy. A line `<!-- include: chart.html -->` in findings.md is replaced by that
+Markdown stays the source copy. A line `<!-- include: chart.html -->` in the Markdown source is replaced by that
 file from the same folder, for a chart or other markup Markdown cannot express.
 """
 import html
@@ -137,16 +137,22 @@ def render(markdown, folder=None):
     return '\n'.join(blocks)
 
 
-def build(folder):
-    markdown = (folder / 'findings.md').read_text()
+def build(path):
+    plan = path.is_file() and path.name == 'plan.md'
+    source = path if plan else path / 'findings.md'
+    folder = source.parent
+    markdown = source.read_text()
     title = re.search(r'^# (.+)$', markdown, re.M)
     page = TEMPLATE.read_text().replace('{{title}}', html.escape(title[1] if title else folder.name))
-    report = folder / 'report.html'
+    report = folder / ('plan.html' if plan else 'report.html')
     report.write_text(page.replace('{{content}}', render(markdown, folder)))
     return report
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 2 or not (Path(sys.argv[1]) / 'findings.md').is_file():
+    if len(sys.argv) != 2:
         sys.exit(__doc__)
-    print(build(Path(sys.argv[1]).resolve()))
+    path = Path(sys.argv[1]).resolve()
+    if not ((path.name == 'plan.md' and path.is_file()) or (path / 'findings.md').is_file()):
+        sys.exit(__doc__)
+    print(build(path))

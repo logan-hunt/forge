@@ -45,6 +45,12 @@ Take the first option that fully works:
 
 Never cut: validation at trust boundaries, error handling that prevents data loss, security, accessibility, the calibration real hardware needs, anything the user asked for.
 
+## Simplify existing code
+
+A caller can use this section at any Ponytail level, including off. Keep the session level as selected.
+
+When callers can move safely, remove the obsolete path before extending its replacement. Give repeated decisions one owner. Keep validation at trust boundaries. Make the smallest change that preserves these contracts.
+
 ## Levels
 
 | Level | Behavior |
