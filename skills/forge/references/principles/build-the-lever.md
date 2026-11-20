@@ -9,8 +9,8 @@ Lean toward a lever when repetition or an otherwise uncheckable claim justifies 
 - Do the first unit by hand to learn the recipe, then build the tool. Prove it by rerunning it on that unit and diffing against your hand-done version. Make the lever safe to rerun.
 - Codemod or script for edits, generator for repetitive files, a dump-to-sqlite query for analysis, a rerunnable check for verification.
 - A deterministic lever beats fan-out. If the tool can process every unit in one pass, run it yourself. Don't fan out delegates to hand-apply what a script can do.
-- When you fan work out to subagents, write the lever as a skill they all read: the recipe, the verification contract, and the do-not-touch fences in one artifact. Keep it outside the delegates' write scope so they can't quietly edit the contract.
-- Report the lever used and the evidence it produced. An existing test or command can satisfy this; do not manufacture a file merely to satisfy the workflow.
+- When you fan work out to subagents, write the lever as one skill they all read. It holds the recipe, the verification contract, and the do-not-touch fences. Keep it outside the delegates' write scope so they can't quietly edit the contract.
+- Report the lever used and the evidence it produced. An existing test or command can satisfy this. Do not manufacture a file merely to satisfy the workflow.
 - Keep a useful new lever with the authorized task changes and follow the task’s checkpoint and publication policy.
 
 The bar is whether the lever makes the work more repeatable or checkable than the tools already available. Build only what the task needs.

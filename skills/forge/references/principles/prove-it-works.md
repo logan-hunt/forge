@@ -13,4 +13,4 @@ Check the real thing, not a proxy:
 
 The strongest proof is a deterministic script that re-runs the same comparison, not a one-time eyeball. Write the script, run it, and keep its output as an artifact a reviewer can re-run instead of trusting your word.
 
-Keep verification evidence visible for the human. For UI changes, save, inspect, and show screenshots of the running changed surface at relevant states and viewport sizes before declaring completion or tearing down its environment. Save them outside the repository and temporary environment. If capture is blocked, report the gap before cleanup. Commit other evidence only when an auditable trail warrants it, like a big port or migration.
+Keep verification evidence visible for the human. Save, inspect, and show screenshots of the running changed UI surface at relevant states and viewport sizes before declaring completion or tearing down its environment. Save them outside the repository and temporary environment. If capture is blocked, report the gap before cleanup. Commit other evidence only when an auditable trail warrants it, like a big port or migration.

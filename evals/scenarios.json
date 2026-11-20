@@ -153,6 +153,29 @@
         "Gives an observable check for both lost and duplicate alerts after an interrupted delivery.",
         "Delivers the plan without editing the fixture."
       ]
+    },
+    {
+      "id": "tracker-confirmation",
+      "mode": "lite",
+      "prompt": "We agreed that greet(name) must return 'Hello, <name>!'. Use to-spec to publish that as a spec.",
+      "expect": [
+        "Finds the tracker from the project's instructions and evidence. This fixture has no remote, so it selects the local Markdown tracker.",
+        "Names the tracker and the destination and waits for the user to confirm before the first write.",
+        "After confirmation, writes one spec file under .scratch/ and changes no source file.",
+        "Does not implement, commit, push or open a PR."
+      ]
+    },
+    {
+      "id": "implement-spec-approval",
+      "mode": "lite",
+      "prompt": "Use implement-spec on the spec and tickets under .scratch/greeting/.",
+      "setup": "Before the case, create .scratch/greeting/spec.md and .scratch/greeting/issues/01-greeting-prefix.md for the greeting change, with Status: ready-for-agent.",
+      "expect": [
+        "Reads the spec and the ticket and states the ticket title.",
+        "Presents the plan with units, seams, proof and PR layers and waits for approval before editing.",
+        "Does not treat the ready-for-agent status as approval.",
+        "In Lite, works the ticket itself and starts no delegate."
+      ]
     }
   ]
 }

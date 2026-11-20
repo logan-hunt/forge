@@ -9,7 +9,7 @@ Use Graphite to preserve branch relationships and make each PR reviewable agains
 
 ## Scope and authorization
 
-Use this skill in repositories already using Graphite. Follow [Forge policy](../../docs/policy.md#publication-and-existing-prs) for checkout, naming, plan approval, review and publication policy, plus the repository's validation requirements. Invoking this skill supplies Graphite guidance; it does not authorize every operation described here.
+Use this skill in repositories already using Graphite. Follow [Forge policy](../../docs/policy.md#publication-and-existing-prs) for checkout, naming, plan approval, review and publication policy, plus the repository's validation requirements. Invoking this skill supplies Graphite guidance. It does not authorize every operation described here.
 
 Use this route only when Graphite is already configured and usable. If it is unavailable, unauthenticated, or rejects an unsynced repository, fall back to ordinary Git and GitHub within the existing authorization. Keep the branch, intended base, remote work, and force-with-lease protection. Local metadata alone is not a reason to require Graphite setup or another permission request.
 
@@ -32,7 +32,7 @@ Use this route only when Graphite is already configured and usable. If it is una
 
 ### Recovery rule
 
-If `gt` reports the trunk is behind upstream ("Trunk branch (main) is behind its upstream branch", "Please run gt get to update", "Aborting submit due to out of date trunk branch"), run `gt sync` and retry the failed command. Never use `git checkout main` / `git pull` / `git fetch` / `git rebase` to fix trunk — it breaks Graphite's branch metadata.
+If `gt` reports the trunk is behind upstream, run `gt sync` and retry the failed command. Examples: "Trunk branch (main) is behind its upstream branch", "Please run gt get to update", "Aborting submit due to out of date trunk branch". Never use `git checkout main`, `git pull`, `git fetch` or `git rebase` to fix trunk. It breaks Graphite's branch metadata.
 
 ## Inspect the base and stack
 
@@ -48,10 +48,10 @@ gt info
 
 Read the actual diffs when needed to distinguish task changes from unrelated work. Check `git worktree list` when another checkout could constrain navigation or rewriting.
 
-- For an existing task or stack, stay on its task branch and preserve the intended parent. A feature-branch parent may be correct; do not flatten a stack onto trunk automatically.
+- For an existing task or stack, stay on its task branch and preserve the intended parent. A feature-branch parent may be correct. Do not flatten a stack onto trunk automatically.
 - If Graphite reports an untracked branch, or ancestry is unclear, read [Stack repair and recovery](references/stack-recovery.md) before changing metadata.
 
-Prefer small PRs with one coherent purpose. Each layer should validate with its ancestors; dependent layers do not need to work without their parents. Split at meaningful review boundaries, without maximizing the number of PRs as an end in itself.
+Prefer small PRs with one coherent purpose. Each layer should validate with its ancestors. Dependent layers do not need to work without their parents. Split at meaningful review boundaries, without maximizing the number of PRs as an end in itself.
 
 ## Navigate and inspect
 
@@ -67,7 +67,7 @@ Use explicit branch names when there are multiple children. Check the working tr
 
 ## Create or update an authorized commit
 
-Run the checks appropriate to the change using the repository's instructions. Before committing, inspect the entire index so unrelated staged work is not swept into the commit. Stage only the authorized files or hunks; avoid broad `git add .` or `--all` shortcuts in a shared working tree.
+Run the checks appropriate to the change using the repository's instructions. Before committing, inspect the entire index so unrelated staged work is not swept into the commit. Stage only the authorized files or hunks. Avoid broad `git add .` or `--all` shortcuts in a shared working tree.
 
 At commit/PR preparation, use the verified current base for an authorized new branch:
 
@@ -99,15 +99,15 @@ Verify the intended ancestry and submission scope with a dry run before pushing:
 gt submit --dry-run --no-interactive
 ```
 
-Inspect the intended remote base and commit range: a child push can expose unpublished ancestor commits even without creating another PR. Keep the fix local and request first-publication authorization if an ancestor would be exposed; do not reparent to evade that boundary. For an existing-PR update, use `--update-only` and inspect the dry run so no unpublished layer is created. Default submission includes the current branch and its ancestors. `--stack` also includes descendants. `--update-only` limits submission to branches with existing PRs; it does not mean "only this branch." Use `--branch <branch>` to select the starting branch without checking it out. Where supported, `--no-stack` explicitly excludes descendants, but still includes ancestors.
+Inspect the intended remote base and commit range. A child push can expose unpublished ancestor commits even without creating another PR. Keep the fix local and request first-publication authorization if an ancestor would be exposed. Do not reparent to evade that boundary. For an existing-PR update, use `--update-only` and inspect the dry run so no unpublished layer is created. Default submission includes the current branch and its ancestors. `--stack` also includes descendants. `--update-only` limits submission to branches with existing PRs. It does not mean "only this branch." Use `--branch <branch>` to select the starting branch without checking it out. Where supported, `--no-stack` explicitly excludes descendants, but still includes ancestors.
 
-Use the same scope flags for the dry run and actual submission. If the preview would change branches or PRs outside the authorized task, narrow the operation; if that cannot preserve the intended stack, explain the concrete affected branches before asking for expanded scope.
+Use the same scope flags for the dry run and actual submission. If the preview would change branches or PRs outside the authorized task, narrow the operation. If that cannot preserve the intended stack, explain the concrete affected branches before asking for expanded scope.
 
 ```bash
 gt submit --no-interactive
 ```
 
-Add `--draft` or `--publish` only to match the requested review state. Preserve Graphite's default force-with-lease protection. Use `gt submit --no-verify` after completing the required validation, including existing-PR updates. This skips Git hooks, not the checks themselves. Never use `--force` or `--ignore-out-of-sync-trunk` to bypass a failure. Resolve the cause and repeat the preview. If the preview would overwrite remote commits, such as layers Graphite's merge rebased onto trunk, save local-only fixes as a patch, take the remote versions with `gt get <branch> --force --no-restack --no-interactive`, reapply the patch and confirm each layer with `git range-diff`. Stop if recovery would still overwrite remote work or require an unrelated history rewrite.
+Add `--draft` or `--publish` only to match the requested review state. Preserve Graphite's default force-with-lease protection. Use `gt submit --no-verify` after completing the required validation, including existing-PR updates. This skips Git hooks, not the checks themselves. Never use `--force` or `--ignore-out-of-sync-trunk` to bypass a failure. Resolve the cause and repeat the preview. If the preview would overwrite remote commits, such as layers Graphite's merge rebased onto trunk, save local-only fixes as a patch. Then take the remote versions with `gt get <branch> --force --no-restack --no-interactive`, reapply the patch and confirm each layer with `git range-diff`. Stop if recovery would still overwrite remote work or require an unrelated history rewrite.
 
 After submission, verify the resulting PRs' head, base, title, body and review state. Report links and validation results, including any checks still pending.
 
@@ -125,7 +125,7 @@ Preserve unrelated description content and stack-navigation metadata. Avoid shel
 
 ## Command compatibility
 
-The examples were checked against local `gt` 1.8.3. Verify version-sensitive flags with `gt <command> --help`; newer Graphite documentation may include flags unavailable locally. Consult the [official command reference](https://graphite.com/docs/command-reference) for current semantics.
+The examples were checked against local `gt` 1.8.3. Verify version-sensitive flags with `gt <command> --help`. Newer Graphite documentation may include flags unavailable locally. Consult the [official command reference](https://graphite.com/docs/command-reference) for current semantics.
 
 ## One commit per PR layer
 

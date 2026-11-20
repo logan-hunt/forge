@@ -25,7 +25,7 @@ Open a todolist with one entry per phase before launching anything.
 
 ## Phase B: Fan out
 
-Launch the workers through the active host. Keep the parent in its starting checkout. Use host-owned worktree isolation only when the user explicitly requests separate checkouts; otherwise use disjoint write scopes or sequence edits. Use separate writable artifacts for non-code work. Follow the host’s completion and cancellation instructions.
+Launch the workers through the active host. Keep the parent in its starting checkout. Use host-owned worktree isolation only when the user explicitly requests separate checkouts. Otherwise, use disjoint write scopes or sequence edits. Use separate writable artifacts for non-code work. Follow the host’s completion and cancellation instructions.
 
 Name the verified base branch or commit in the delegation request using the host’s supported fields. A base need not be published merely to start local work.
 

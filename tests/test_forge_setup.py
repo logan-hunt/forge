@@ -75,19 +75,19 @@ class SetupTests(unittest.TestCase):
         (source / 'skills/forge/SKILL.md').touch()
         links = self.home / '.agents/skills'
         links.mkdir(parents=True)
-        retired_source = source / 'skills/teach'
+        retired_source = source / 'skills/recall'
         retired_source.mkdir()
         local_note = retired_source / 'local-note.md'
         local_note.touch()
-        owned = links / 'teach'
-        owned.symlink_to(os.path.relpath(source / 'skills/teach', owned.parent))
+        owned = links / 'recall'
+        owned.symlink_to(os.path.relpath(source / 'skills/recall', owned.parent))
         alternate = self.root / 'alternate'
         (alternate / 'vendor').mkdir(parents=True)
-        (alternate / 'teach').mkdir()
+        (alternate / 'recall').mkdir()
         (source / 'skills/vendor').symlink_to(alternate / 'vendor')
-        redirected = self.home / '.claude/skills/teach'
+        redirected = self.home / '.claude/skills/recall'
         redirected.parent.mkdir(parents=True)
-        redirected.symlink_to(source / 'skills/vendor/../teach')
+        redirected.symlink_to(source / 'skills/vendor/../recall')
         alias = self.root / 'my-skill'
         alias.symlink_to(source / 'skills/principle-subtract-before-you-add')
         indirect = links / 'principle-subtract-before-you-add'
@@ -102,7 +102,7 @@ class SetupTests(unittest.TestCase):
             self.assertFalse(owned.is_symlink())
             self.assertTrue(foreign.is_symlink())
             self.assertTrue(indirect.is_symlink())
-            self.assertEqual(redirected.resolve(), alternate / 'teach')
+            self.assertEqual(redirected.resolve(), alternate / 'recall')
             self.assertTrue(local_note.is_file())
             self.assertEqual(activation.activate(source, self.home, apply=True), [])
 
@@ -158,6 +158,18 @@ class SetupTests(unittest.TestCase):
         with contextlib.redirect_stdout(io.StringIO()):
             forge_config.update_config(project, {'roles': {legacy: target}}, self.home, apply=True)
         self.assertEqual(json.loads(project.read_text())['roles'], {role: target})
+
+    def test_renamed_retro_roles_keep_saved_overrides(self):
+        user = forge_config.config_path('user', self.home, self.project)
+        user.parent.mkdir(parents=True)
+        target = {'providerInstanceId': 'provider', 'model': 'reviewer'}
+        user.write_text(json.dumps({'roles': {'reflect tooling': target, 'reflect judgment': target}}))
+
+        effective = forge_config.load_config(self.home, self.project)['roles']
+
+        self.assertEqual((effective['retro tooling'], effective['retro judgment']), (target, target))
+        self.assertNotIn('reflect tooling', effective)
+        self.assertNotIn('reflect judgment', effective)
 
     def test_model_overrides_merge_by_role_and_null_restores_inheritance(self):
         user = forge_config.config_path('user', self.home, self.project)

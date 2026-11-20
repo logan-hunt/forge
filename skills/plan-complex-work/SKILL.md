@@ -9,7 +9,11 @@ disable-model-invocation: true
 
 # Plan Complex Work
 
-When the task matches no playbook, design one. The deliverable before any code is the workflow itself: a sequence of phases that scales rigor to the task, runs the scientific method, and leaves a decision trail a human can audit after stepping away.
+When the task matches no playbook, design one. The deliverable before any code is the workflow itself, a sequence of phases that:
+
+- scales rigor to the task
+- runs the scientific method
+- leaves a decision trail a human can audit after stepping away
 
 ## Start
 
@@ -31,10 +35,10 @@ Decompose into atomic, independently-landable units. Sequence riskiest-unknown-f
 
 - Build the verification harness before the work, with the baseline captured from the pre-change state, so the check reads as "old value vs new value".
 - For one-way-door design decisions, run the [architect](../architect/SKILL.md) skill (it runs [arena](../arena/SKILL.md)). Skip it for mechanical work whose shape is already concrete.
-- Decide what fans out. Parallelize only across seams, and give each worker a disjoint write scope or sequence overlapping edits in the starting checkout; separate child checkouts require an explicit user request for separate checkouts (the [separate-before-serializing-shared-state](../forge/references/principles/separate-before-serializing-shared-state.md) principle). Don't over-fan. Use the configured model role and supported host options, following Forge’s Delegation and models section.
+- Decide what fans out. Parallelize only across seams. Give each worker a disjoint write scope, or sequence overlapping edits in the starting checkout. Separate child checkouts require an explicit user request for separate checkouts (the [separate-before-serializing-shared-state](../forge/references/principles/separate-before-serializing-shared-state.md) principle). Don't over-fan. Use the configured model role and supported host options, following Forge’s Delegation and models section.
 - Write the designed phase list down. That list is what the human reviews.
 
-For an implementation request, execute the design. For a plan-only request, stop at the proposed workflow. Add its steps to the todolist as concrete items between the Phase C and Phase D entries. Run each under the Phase C loop discipline, and weave the Phase D log through them, a row as each step lands, rather than saving the whole trail for the end.
+For an implementation request, execute the design. For a plan-only request, stop at the proposed workflow. Add its steps to the todolist as concrete items between the Phase C and Phase D entries. Run each under the Phase C loop discipline. Weave the Phase D log through them, a row as each step lands, rather than saving the whole trail for the end.
 
 ## Phase C: Run the loop
 
@@ -50,6 +54,6 @@ Record the run’s decisions, evidence and results. These projects are usually l
 
 ## Phase E: Verify and hand back
 
-Check the whole against the Phase A predicate on the real product, not just the harness. Propose a gate, lint rule, check or script for recurring corrections outside the approved scope; implement selected enforcement within scope (the [encode-lessons-in-structure](../forge/references/principles/encode-lessons-in-structure.md) principle).
+Check the whole against the Phase A predicate on the real product, not just the harness. Propose a gate, lint rule, check or script for recurring corrections outside the approved scope. Implement selected enforcement within scope (the [encode-lessons-in-structure](../forge/references/principles/encode-lessons-in-structure.md) principle).
 
 **Reply:** the playbook you designed, the rigor level and why, the decision-trail path, what's verified against the predicate, and what's still open.

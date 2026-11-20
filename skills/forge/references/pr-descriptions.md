@@ -11,4 +11,8 @@
 - Choose evidence that lets the reviewer judge the approved behavior. Use the example that fits the change.
   - UI: “Clicking **Show the page** used to leave the scan on the previous page. It now opens the selected question’s page.” Attach the before-and-after captures when available.
   - Migration: “Existing papers with numeric scores receive a total. Rolling back the app leaves those totals in place.” State what happens to the source data if the schema rolls back.
+- State the merge danger in two parts.
+  - **Door.** Two-way when a revert restores the previous state. One-way when the change destroys data or makes a decision that is hard to reverse.
+  - **Blast radius.** What the change can break outside the diff. For a change that is not trivially safe, use the [blast-radius](../../blast-radius/SKILL.md) method. State the one fact the change is safe because of, and mark it proven or unproven.
+  - When the repository's template has no place for the merge danger, put it with the supporting details.
 - Identify any remaining gap that affects the reviewer’s decision. Report local environment issues in chat.

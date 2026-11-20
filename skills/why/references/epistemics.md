@@ -8,7 +8,13 @@ Every claim in the output must sit in one tier. The tier sets its section and it
 
 ### 1. Direct
 
-An explicit, textual citation answers the question: something an author actually *wrote* that says why, not "the code does X so the author must have wanted X." For example, a PR description "this fixes the bug where users with >1000 items couldn't paginate", a ticket "we're adding this because customer Acme requested it in their security review", a code comment "// clamp to 100 because the upstream API rejects larger values", a design doc "we chose option A over option B because we need persistence across restarts", or a chat message from the author "switching to this approach since the old one was flaky in tests".
+An explicit, textual citation answers the question. An author actually *wrote* the reason, not "the code does X so the author must have wanted X." For example:
+
+- PR description "this fixes the bug where users with >1000 items couldn't paginate"
+- ticket "we're adding this because customer Acme requested it in their security review"
+- code comment "// clamp to 100 because the upstream API rejects larger values"
+- design doc "we chose option A over option B because we need persistence across restarts"
+- chat message from the author "switching to this approach since the old one was flaky in tests"
 
 Phrasing: confident, present tense, cited. "This exists because X."
 
@@ -20,13 +26,13 @@ Phrasing: confident but clearly derived, citing each item. "The evidence points 
 
 ### 3. Inferred
 
-A reasonable reading of the context that nothing explicitly supports. It is *your interpretation*, not a fact from the record. For example, the PR doesn't say why, but the error was happening in production (per the incident channel timing) and the fix was rushed (merged the same day), so it was likely a hotfix. Or the function name suggests retry logic, and its retry count of 3 matches the team's 3-retry convention elsewhere in the codebase.
+A reasonable reading of the context that nothing explicitly supports. It is *your interpretation*, not a fact from the record. For example, the PR doesn't say why. But the error was happening in production (per the incident channel timing), and the fix was rushed (merged the same day). So it was likely a hotfix. Or the function name suggests retry logic, and its retry count of 3 matches the team's 3-retry convention elsewhere in the codebase.
 
 Phrasing: hedged, with the chain explicit. "Given A and B, C seems likely because D."
 
 ### 4. Speculative
 
-A plausible hypothesis on thin evidence, where other explanations fit equally well. Worth presenting, since the user may know which is right, but mark it as a guess. For example, "This might be a workaround for a browser bug that's since been fixed, but we found no contemporary evidence of that", or "It's possible this threshold was chosen to match an SLA commitment, but no SLA doc references it."
+A plausible hypothesis on thin evidence, where other explanations fit equally well. Worth presenting, since the user may know which is right, but mark it as a guess. For example, "This might be a workaround for a browser bug that's since been fixed, but we found no contemporary evidence of that". Or "It's possible this threshold was chosen to match an SLA commitment, but no SLA doc references it."
 
 Phrasing: "One possibility is X, but we have no direct evidence." Usually lives in Competing Hypotheses, alongside other possibilities.
 
@@ -38,9 +44,15 @@ Phrasing: "We searched X, Y, and Z and found no evidence of why." Be specific ab
 
 ## Phrasing Guide
 
-**Confidence words** imply Direct or Supported evidence and need a citation immediately adjacent. Never use them for inferences: "because", "the reason is", "was designed to" (claims author intent), "fixes" / "addresses" / "solves" (claims the change achieved its goal), "the team decided" (claims a group decision happened).
+**Confidence words** imply Direct or Supported evidence and need a citation immediately adjacent. Never use them for inferences:
 
-**Hedges** signal interpretation, not report. Use them liberally in What We Can Reasonably Infer: "appears to", "seems to", "likely", "suggests", "is consistent with", "one reading is", "plausibly", "may have been", "the evidence points toward".
+- "because"
+- "the reason is"
+- "was designed to" (claims author intent)
+- "fixes" / "addresses" / "solves" (claims the change achieved its goal)
+- "the team decided" (claims a group decision happened)
+
+**Hedges** signal interpretation, not report: "appears to", "seems to", "likely", "suggests", "is consistent with", "one reading is", "plausibly", "may have been", "the evidence points toward". Use them liberally in What We Can Reasonably Infer.
 
 **Words to avoid:**
 
@@ -64,7 +76,7 @@ Surface both sources in the output, with citations. Don't pick the one that fits
 
 ## When Evidence Is Missing
 
-An honest "we don't know" is one of the most valuable outputs. The user learns the answer isn't in the obvious places, that they'll need to ask a human (the original author, the product owner, the team lead), or that they can decide the question isn't worth pursuing further. Failing to mark a gap, and instead filling it with a confident guess, actively harms the user, because they'll act on the guess. Name each gap concretely: the question, the sources searched, what you searched for in each, and what you found (nothing, or only tangential material).
+An honest "we don't know" is one of the most valuable outputs. The user learns the answer isn't in the obvious places. They'll need to ask a human (the original author, the product owner, the team lead), or they can decide the question isn't worth pursuing further. Failing to mark a gap, and instead filling it with a confident guess, actively harms the user, because they'll act on the guess. Name each gap concretely: the question, the sources searched, what you searched for in each, and what you found (nothing, or only tangential material).
 
 ## Before Finalizing
 

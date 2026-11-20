@@ -1,6 +1,6 @@
 # Review the change
 
-Use the active Forge mode: Lite self-reviews; Standard and Max use a separate reviewer, preferring another available provider. Follow [Forge policy](../../../docs/policy.md) for authorization and [the host adapter](../../../docs/harness/README.md) for mechanics.
+Use the active Forge mode. Lite self-reviews. Standard and Max use a separate reviewer, preferring another available provider. Follow [Forge policy](../../../docs/policy.md) for authorization and [the host adapter](../../../docs/harness/README.md) for mechanics.
 
 ## First pass
 
@@ -10,7 +10,7 @@ Check each promised behavior against the implementation and its verification evi
 
 For each actionable finding, provide a location, concrete failure case, severity, supporting evidence and suggested correction. Distinguish verified defects from unverified concerns. A missing test result is a coverage gap, not proof of failure or success. Do not invent findings to fill a quota or expand the task with unrelated cleanup. Scores and reviewer agreement do not establish correctness.
 
-The parent verifies material claims and records each finding as fixed, rejected with a reason, or unresolved. Preserve human decisions and scope; return material changes to the user under Forge policy. PR comments and submitted reviews follow the adopter's rules and authorization.
+The parent verifies material claims and records each finding as fixed, rejected with a reason, or unresolved. Preserve human decisions and scope. Return material changes to the user under Forge policy. PR comments and submitted reviews follow the adopter's rules and authorization.
 
 ## Follow-up passes
 

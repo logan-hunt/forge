@@ -13,6 +13,7 @@ RETIRED_SKILLS = (
     'ketchup',
     'no-comments',
     'recall',
+    'reflect',
     'sharpen',
     'statechart',
     'typescript-best-practices',
@@ -41,7 +42,6 @@ RETIRED_SKILLS = (
     'principle-subtract-before-you-add',
     'principle-test-behavior-not-implementation',
     'principle-type-system-discipline',
-    'teach',
     'technical-writing',
 )
 

@@ -43,9 +43,9 @@ Arena returns one synthesized design package. Its synthesis decision fills the r
 
 ## Phase C: Agree
 
-Surface the synthesized design for plan approval; approval of the same concrete plan is reused. For an authorized implementation task, proceed once that plan is approved. A request to plan, evaluate or discuss stops at the design and recommendation.
+Surface the synthesized design for plan approval. Approval of the same concrete plan is reused. For an authorized implementation task, proceed once that plan is approved. A request to plan, evaluate or discuss stops at the design and recommendation.
 
-For authorized implementation, a local checkpoint can preserve the synthesis as the "scaffold first" mode of the [foundational-thinking](../forge/references/principles/foundational-thinking.md) principle. First publication still follows quick-ship; a design-only request does not authorize a commit. Planned and scoped breakage during fill-in is fine, per the [outcome-oriented-execution](../forge/references/principles/outcome-oriented-execution.md) principle. For adversarial pressure on the design before implementing, run the [adversarial-review](../adversarial-review/SKILL.md) skill on the synthesized sketch.
+For authorized implementation, a local checkpoint can preserve the synthesis as the "scaffold first" mode of the [foundational-thinking](../forge/references/principles/foundational-thinking.md) principle. First publication still follows quick-ship. A design-only request does not authorize a commit. Planned and scoped breakage during fill-in is fine, per the [outcome-oriented-execution](../forge/references/principles/outcome-oriented-execution.md) principle. For adversarial pressure on the design before implementing, run the [adversarial-review](../adversarial-review/SKILL.md) skill on the synthesized sketch.
 
 If the human pushes back on the shape (at approval or after the fact), treat that as Phase A evidence. Re-ground and re-run Phase B before writing more code.
 

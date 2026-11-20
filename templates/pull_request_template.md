@@ -13,9 +13,13 @@ Completes REPLACE_WITH_REQUIRED_LINEAR_ID
 
 <!-- Describe behavior verified by tests or manual checks, and material coverage gaps. Leave routine CI results, local setup problems, and tooling details out. -->
 
+## Merge danger
+
+<!-- Door: one-way or two-way, with the reason. Blast radius: what this can break outside the diff, and the one fact it is safe because of (proven or unproven). -->
+
 ## Screenshots and recordings
 
-<!-- Attach evidence for user-visible changes; remove this section otherwise. -->
+<!-- Attach evidence for user-visible changes. Remove this section otherwise. -->
 
 <details>
 <summary>Supporting details</summary>

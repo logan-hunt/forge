@@ -2,17 +2,18 @@
 
 ## Choose the team's entry points
 
-Start with Forge, Forge Lite and Forge setup. Standard is the default; use Lite for solo work. Plan approval, review and publication follow [Forge policy](policy.md). Install hooks only when requested.
+Start with Forge, Forge Lite and Forge setup. Standard is the default. Use Lite for solo work. Plan approval, review and publication follow [Forge policy](policy.md). Install hooks only when requested.
 
 The package keeps all bundled skills available. Treat these groups as capability scope, not a claim that every skill has been evaluated in every host:
 
 | Group | When to use it |
 | --- | --- |
 | Core workflow | Forge modes, planning, implementation, verification and review. These are the team's starting entry points. |
-| Optional methods | How, Why, research, cleanup, teaching and catch-up when the task needs them. |
+| Optional methods | How, Why, research, Grilling, domain modeling, cleanup, teaching, handoff and catch-up when the task needs them. |
+| Tracker workflows | To Spec, To Tickets, Implement Spec, Wayfinder and Triage when the team keeps work in an issue tracker. Each one writes to the tracker only after the user confirms the target. |
 | Advanced workflows | Arena, Swarm, autonomous queues, benchmarks and statechart tooling when their capabilities, scope and verification are available. |
 
-Keep repository-specific checks, environments and PR-interaction rules in the adopting repository. Keep experimental team instructions outside the shared defaults until reviewed. Broad discovery-policy changes and skill removals need behavior evidence; installing this package does not make every method a required phase.
+Keep repository-specific checks, environments and PR-interaction rules in the adopting repository. Keep experimental team instructions outside the shared defaults until reviewed. Broad discovery-policy changes and skill removals need behavior evidence. Installing this package does not make every method a required phase.
 
 ## Run the local checks
 
@@ -24,7 +25,7 @@ python3 -m venv .venv
 .venv/bin/python -B scripts/check-release.py
 ```
 
-Python 3.10 or newer and Node are required for these checks. PyYAML is a development dependency for metadata validation; activation, configuration and Forge hooks use Python's standard library. The repository CI runs the same local check on Linux and macOS. A passing local check does not establish that CI or a real host installation passed.
+Python 3.10 or newer and Node are required for these checks. PyYAML is a development dependency for metadata validation. Activation, configuration and Forge hooks use Python's standard library. The repository CI runs the same local check on Linux and macOS. A passing local check does not establish that CI or a real host installation passed.
 
 The validator parses YAML, checks required skill fields and invocation types, parses JSON and checks inline local Markdown file links and heading anchors. Its heading rules approximate GitHub Markdown. It does not check every Markdown construct, external URL or vendor schema. Run the host's current plugin validator as well when available.
 
@@ -36,7 +37,7 @@ Record the host/version, operating system, package revision and observed results
 
 ## Exercise the workflow instructions
 
-The [behavior cases](../evals/scenarios.json) cover approval, read-only scope, Lite delegation, provider fallback, repository rules and review follow-ups. They are host-independent prompts and expectations, not an automatic or scored agent benchmark.
+The [behavior cases](../evals/scenarios.json) cover approval, read-only scope, Lite delegation, provider fallback, repository rules, review follow-ups and tracker writes. They are host-independent prompts and expectations, not an automatic or scored agent benchmark.
 
 Copy the [fixture](../evals/fixtures/greeter/greet.py) and [test template](../evals/fixtures/greeter/test_greet.py.template) into a disposable project outside the source checkout, naming the latter `test_greet.py`. Its test intentionally fails until the greeting is corrected. Read each case's setup before starting it. Use the real host's Forge invocation, and give the agent only the prompt and project context. Keep the expectations and other cases out of its task brief.
 
@@ -44,4 +45,4 @@ Inspect resulting files, relevant checks and the task's own tool trace. Record p
 
 To test the [headless Codex approval boundary](harness/README.md#headless-codex-planning), run the planning case read-only. In a separate read-only control, ask the shell to open the fixture's `greet.py` for append without writing bytes. Verify a permission error in the tool result. Then run the approved case with workspace write access and inspect the one-line change and test result. A model that only promises to wait exercises the instruction, not the filesystem boundary.
 
-For a comparison, use the same task snapshots and host/model versions, repeat runs and record success, unauthorized actions, unnecessary questions, review rounds, elapsed time and reported usage separately. Keep denominators and unavailable measurements visible. Approval regressions block sharing regardless of average speed. No prompt-size reduction alone proves a performance gain.
+For a comparison, use the same task snapshots and host/model versions, and repeat runs. Record success, unauthorized actions, unnecessary questions, review rounds, elapsed time and reported usage separately. Keep denominators and unavailable measurements visible. Approval regressions block sharing regardless of average speed. No prompt-size reduction alone proves a performance gain.

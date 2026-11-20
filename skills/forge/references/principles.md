@@ -11,15 +11,16 @@ For simplicity, read [Simplify existing code](../../ponytail/SKILL.md#simplify-e
 - [Outcome-Oriented Execution](principles/outcome-oriented-execution.md). Planned rewrites and migrations with explicit phase boundaries. Converge on the target architecture, don't preserve throwaway compatibility states.
 - [Experience First](principles/experience-first.md). Product, UX, or feature-scope tradeoffs. Choose user delight over implementation convenience.
 - [Exhaust the Design Space](principles/exhaust-the-design-space.md). A novel interaction or architectural decision with no precedent. Build 2-3 competing prototypes and compare before committing.
-- [Build the Lever](principles/build-the-lever.md). Any non-trivial work. Prefer a reusable tool that does or proves it. Reuse an existing test or command when sufficient; create a lever when repeatability or proof earns its maintenance.
+- [Build the Lever](principles/build-the-lever.md). Any non-trivial work. Prefer a reusable tool that does or proves it. Reuse an existing test or command when sufficient. Create a lever when repeatability or proof earns its maintenance.
 
 **Architecture**
 
 - [Model the Domain](principles/model-the-domain.md). Writing stateful logic, or code that branches a lot or repeats a shape assumption across files. Encode the domain in a structure (state machine, typed model, table or registry, reducer, boundary, the right collection) instead of scattered conditionals.
+- [Deep Modules](principles/deep-modules.md). Designing or reshaping a module, placing a seam, or judging whether a wrapper earns its place. Put much behavior behind a small interface and test through that interface.
 - [Boundary Discipline](principles/boundary-discipline.md). Wiring validation, error handling, or framework adapters. Guards at system boundaries, trust internal types, keep business logic pure.
 - [Type System Discipline](principles/type-system-discipline.md). Designing types or a signature in any typed language. Make illegal states unrepresentable, brand primitives, parse external data at boundaries.
 - [Make Operations Idempotent](principles/make-operations-idempotent.md). Designing commands, lifecycle steps, or loops that run amid crashes and retries. Converge to the same end state.
-- [Migrate Callers Then Delete Legacy APIs](principles/migrate-callers-then-delete-legacy-apis.md). Introducing a new internal API while old callers exist. Migrate and delete in one wave only when all consumers can move together; preserve external and persisted contracts otherwise.
+- [Migrate Callers Then Delete Legacy APIs](principles/migrate-callers-then-delete-legacy-apis.md). Introducing a new internal API while old callers exist. Migrate and delete in one wave only when all consumers can move together. Otherwise, preserve external and persisted contracts.
 - [Separate Before Serializing Shared State](principles/separate-before-serializing-shared-state.md). Concurrent actors might write the same file, branch, key, or object. Eliminate the sharing first.
 
 **Verification**
@@ -28,7 +29,7 @@ For simplicity, read [Simplify existing code](../../ponytail/SKILL.md#simplify-e
 - [Fix Root Causes](principles/fix-root-causes.md). Debugging. Trace each symptom back to the first place the system went wrong and fix it there. A guard is a fix only when the state it handles is legitimate.
 - [Sequence Work into Verifiable Units](principles/sequence-verifiable-units.md). Multi-step work (sweeps, migrations, runs of similar edits) and how you stack commits and PRs. Break work into small units that each end in a check, verify each before the next, and order delivery so the sequence proves itself.
 - [Test Behavior, Not Implementation](principles/test-behavior-not-implementation.md). Writing, changing, or keeping a test. Assert what the code's users can observe, so the test fails when that behavior breaks and keeps passing when only the internals change.
-- [Explain the Number](principles/explain-the-number.md). Apply before you measure, and before you trust, report, or act on a number you measured (a speedup, a regression, a throughput, a latency, or an eval result). Find what limits it, and rule out that it measured something other than the work you think.
+- [Explain the Number](principles/explain-the-number.md). Apply before you measure, and before you trust, report, or act on a number you measured (a speedup, regression, throughput, latency, or eval result). Find what limits it, and rule out that it measured something other than the work you think.
 
 **Delegation**
 

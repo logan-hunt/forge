@@ -1,6 +1,6 @@
 # Design red flags
 
-Screen every candidate before synthesis. A red flag is a reason to revise or reject the shape.
+Screen every candidate before synthesis. A red flag is a reason to revise or reject the shape. [Deep Modules](../../forge/references/principles/deep-modules.md) defines the terms: module, interface, depth, seam and adapter.
 
 ## Shallow module
 

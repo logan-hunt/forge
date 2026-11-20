@@ -18,7 +18,7 @@ Read-only and planning requests stop at the requested outcome. Publication needs
 
 The mode changes the depth of investigation and review.
 
-![Forge modes: Lite uses solo work and self-review; Standard, the default, adds independent review; Max adds broader investigation and competing designs](docs/assets/forge-modes.png)
+![Forge modes: Lite uses solo work and self-review. Standard, the default, adds independent review. Max adds broader investigation and competing designs](docs/assets/forge-modes.png)
 
 ## Install
 
@@ -62,11 +62,11 @@ python3 scripts/activate-forge.py --scope user
 python3 scripts/activate-forge.py --scope project --project /path/to/project
 ```
 
-The script exposes skills through `.agents/skills`, `.claude/skills` and `.cursor/skills` at the selected scope. Use repeated `--host agents|claude|cursor` flags to select roots. Existing skills are preserved; collisions stop installation. `--remove --apply` removes current skill links that resolve to this package and direct links to its retired skills. It preserves indirect links to retired skills. Keep the checkout in place while links or hook commands refer to it. Symlink installation needs filesystem support for symlinks.
+The script exposes skills through `.agents/skills`, `.claude/skills` and `.cursor/skills` at the selected scope. Use repeated `--host agents|claude|cursor` flags to select roots. Existing skills are preserved. Collisions stop installation. `--remove --apply` removes current skill links that resolve to this package and direct links to its retired skills. It preserves indirect links to retired skills. Keep the checkout in place while links or hook commands refer to it. Symlink installation needs filesystem support for symlinks.
 
-When upgrading, use [How](skills/how/SKILL.md) for former Teach walkthroughs. Ponytail’s [Simplify existing code](skills/ponytail/SKILL.md#simplify-existing-code) section replaces Laziness Protocol and Subtract Before You Add. Find the other former principle skills by task in the [Forge principles index](skills/forge/references/principles.md). Forge and its playbooks load these references on demand. Start a new session to refresh skill discovery.
+When upgrading, use [How](skills/how/SKILL.md) for code walkthroughs. [Teach](skills/teach/SKILL.md) now runs a course over several sessions. Ponytail’s [Simplify existing code](skills/ponytail/SKILL.md#simplify-existing-code) section replaces Laziness Protocol and Subtract Before You Add. Find the other former principle skills by task in the [Forge principles index](skills/forge/references/principles.md). Forge and its playbooks load these references on demand. Start a new session to refresh skill discovery.
 
-Forge 0.4 uses the following command names.
+Forge uses the following command names.
 
 Former command | Current command
 --- | ---
@@ -76,6 +76,7 @@ Former command | Current command
 `ketchup` | [`recap-chat`](skills/recap-chat/SKILL.md)
 `no-comments` | [`review-comments`](skills/review-comments/SKILL.md)
 `recall` | [`total-recall`](skills/total-recall/SKILL.md)
+`reflect` | [`retro`](skills/retro/SKILL.md)
 `sharpen` | [`refine-prompt`](skills/refine-prompt/SKILL.md)
 `statechart` | [`statechart-diagram`](skills/statechart-diagram/SKILL.md)
 `typescript-best-practices` | Removed. Follow your repository’s TypeScript conventions.
@@ -92,17 +93,17 @@ python3 scripts/install-forge-hooks.py --scope user --default-mode standard --po
 python3 scripts/install-forge-hooks.py --scope project --project /path/to/project
 ```
 
-Both commands preview. Add `--apply` for an authorized installation, or `--remove --apply` for removal. Backups preserve changed settings. New sessions and the host's trust flow may be required. Hook installation supports Claude Code and Codex; Cursor packaging and discovery do not imply Cursor hook support. The hook installer emits POSIX-style commands; Windows host loading is not verified.
+Both commands preview. Add `--apply` for an authorized installation, or `--remove --apply` for removal. Backups preserve changed settings. New sessions and the host's trust flow may be required. Hook installation supports Claude Code and Codex. Cursor packaging and discovery do not imply Cursor hook support. The hook installer emits POSIX-style commands. Windows host loading is not verified.
 
 ## Configure models
 
-Ordinary unconfigured roles inherit the active model. Resolve effective settings with `python3 scripts/forge_config.py --project /path/to/project`. User settings, including `defaultMode` and the `ponytail` level, are in `~/.config/forge/config.json`; project settings in `~/.config/forge/projects/<project>-<hash>.json` override them by role. Backups of changed settings go to `~/.config/forge/backups/`. Store a model selection object, a panel array, or null to restore the workflow default. See [forge-setup](skills/forge-setup/SKILL.md) for preview/apply commands and live capability validation. Customization does not edit installed package files.
+Ordinary unconfigured roles inherit the active model. Resolve effective settings with `python3 scripts/forge_config.py --project /path/to/project`. User settings, including `defaultMode` and the `ponytail` level, are in `~/.config/forge/config.json`. Project settings in `~/.config/forge/projects/<project>-<hash>.json` override them by role. Backups of changed settings go to `~/.config/forge/backups/`. Store a model selection object, a panel array, or null to restore the workflow default. See [forge-setup](skills/forge-setup/SKILL.md) for preview/apply commands and live capability validation. Customization does not edit installed package files.
 
 Standard and Max use a separate reviewer agent, preferring another available provider. Same-provider review is supported.
 
 ## Workflow and host support
 
-[Forge policy](docs/policy.md) defines required plan approval, review and publication boundaries. Full-send is an explicit task-scoped grant. Repository instructions and user authorization govern PR comments, reviews and thread resolution. Git helpers follow the repository's conventions; ticket creation is conditional on its workflow. Graphite is used only when already configured and usable.
+[Forge policy](docs/policy.md) defines required plan approval, review and publication boundaries. Full-send is an explicit task-scoped grant. Repository instructions and user authorization govern PR comments, reviews and thread resolution. Git helpers follow the repository's conventions. Ticket creation is conditional on its workflow. Graphite is used only when already configured and usable.
 
 T3 and native Claude Code have [host adapters](docs/harness/README.md). Other hosts use their current tools and limitations. Read-only requests remain nonmutating. Manifests and command names alone do not prove runtime discovery or delegation. Python 3.10+ is required for setup, configuration and the Forge hook. The [Statechart Diagram skill](skills/statechart-diagram/SKILL.md) has separate TypeScript, Java/TLC and first-run download requirements documented in its skill.
 

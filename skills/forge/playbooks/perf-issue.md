@@ -14,7 +14,7 @@
    7. Do it cheaper.
 
    When an earlier mantra meets the target, stop.
-3. Plan the fix from the trace. In Max, or when the fix changes ownership or contracts, use `architect` first. Use a scoped implementation delegate when the mode and task warrant it using your configured perf-issue model (role resolved through forge-setup; inherit when unconfigured). Use the configured model role and supported host options, following Forge’s Delegation and models section. Review the diff. Capture a post-fix trace.
+3. Plan the fix from the trace. In Max, or when the fix changes ownership or contracts, use `architect` first. Use a scoped implementation delegate when the mode and task warrant it using your configured perf-issue model (role resolved through forge-setup, inherited when unconfigured). Use the configured model role and supported host options, following Forge’s Delegation and models section. Review the diff. Capture a post-fix trace.
    Apply the [sequence-verifiable-units](../references/principles/sequence-verifiable-units.md) principle, verifying each attempt before trying the next.
 4. Parse and compare the artifacts (JSON to sqlite, diff). "Inconclusive" or wrong-surface is not a pass. Flag it.
 5. Cite the measurement in the result and in an authorized PR description when one is published.

@@ -12,7 +12,7 @@ Use the caller’s files or diff. Otherwise inspect the current task diff agains
 
 ## Review
 
-Ask the `comment-reviewer` agent for a focused review through the active host when independent review is useful. It returns findings; the parent owns any edits. Read its definition at `../../agents/comment-reviewer.md`.
+Ask the `comment-reviewer` agent for a focused review through the active host when independent review is useful. It returns findings. The parent owns any edits. Read its definition at `../../agents/comment-reviewer.md`.
 
 Delete comments that merely narrate visible code, stale explanations, redundant banners, and commented-out dead code when the surrounding behavior confirms they are obsolete.
 

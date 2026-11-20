@@ -12,7 +12,7 @@ Forge coordinates the bundled skills rather than replacing them. Resolve this fi
 
 ## Lite, Standard, and Max
 
-Standard is the default unless [forge-setup](../forge-setup/SKILL.md) configured another. Select a mode with `/forge lite`, `/forge standard`, or `/forge max`; the selection lasts for the rest of the session.
+Standard is the default unless [forge-setup](../forge-setup/SKILL.md) configured another. Select a mode with `/forge lite`, `/forge standard`, or `/forge max`. The selection lasts for the rest of the session.
 
 | Mode | Approach | Review |
 | --- | --- | --- |
@@ -22,15 +22,15 @@ Standard is the default unless [forge-setup](../forge-setup/SKILL.md) configured
 
 Lite launches delegates only at the user's explicit request. This overrides automatic delegation in routed skills and playbooks. Investigate further when needed, and obtain agreement before switching out of Lite.
 
-Max normally routes cross-function changes through [architect](../architect/SKILL.md). Adapt methods as evidence warrants while retaining the mode's review requirements. All modes preserve required checks, scope, and approval gates. A new session starts in the default mode. When the mode hooks are installed, a `Forge mode:` line in context reports the session's mode; a mode named in a delegating brief takes precedence.
+Max normally routes cross-function changes through [architect](../architect/SKILL.md). Adapt methods as evidence warrants while retaining the mode's review requirements. All modes preserve required checks, scope, and approval gates. A new session starts in the default mode. When the mode hooks are installed, a `Forge mode:` line in context reports the session's mode. A mode named in a delegating brief takes precedence.
 
 The [forge-lite](../forge-lite/SKILL.md) and [forge-max](../forge-max/SKILL.md) entry points select these modes through the same workflow.
 
 ## Required workflow
 
-All modes follow this sequence, using the selected mode's review and delegation rules. Explicit [full-send](../full-send/SKILL.md) supplies the approval grant in [Forge policy](../../docs/policy.md); otherwise the human gates apply. Playbooks supply task-specific methods.
+All modes follow this sequence, using the selected mode's review and delegation rules. Explicit [full-send](../full-send/SKILL.md) supplies the approval grant in [Forge policy](../../docs/policy.md). Otherwise the human gates apply. Playbooks supply task-specific methods.
 
-1. Research before editing: inspect repository instructions, working tree, affected code, callers and checks. Establish behavior and constraints; resolve uncertainties that could change the approach.
+1. Research before editing: inspect repository instructions, working tree, affected code, callers and checks. Establish behavior and constraints. Resolve uncertainties that could change the approach. When the project has a `GLOSSARY.md` or ADRs, read the parts for the affected area and use their terms.
 2. Present the concrete plan under [Forge policy](../../docs/policy.md#task-isolation-and-planning). Open with the outcome and any choice the user must make. Recommend an option and explain its consequence. Give the key finding, scope and observable proof.
    - For a small, settled edit, give the before/after and check in chat. For a design decision, a changed user or data flow, or multiple implementation units, deliver a [saved plan](references/plan-delivery.md). Use the complete in-chat plan when the user requests chat-only or applicable instructions or permissions restrict writing.
    - For a material revision, lead with the previous choice, its replacement, why it changed and its effect. Present the complete current plan and state whether approval is pending.
@@ -41,22 +41,27 @@ All modes follow this sequence, using the selected mode's review and delegation 
 5. Publish within that authorization using [Opening a PR](playbooks/opening-a-pr.md). Plan approval and passing checks do not authorize initial publication. Merge and deployment remain separate actions.
 6. Follow the [host adapter](../../docs/harness/README.md) for PR linking and the conditions for monitoring. Use [PR monitoring](playbooks/pr-monitoring.md) for requested status reads or ongoing monitoring.
 
-Delegates execute the parent's approved plan; the parent owns human interaction and monitoring and reviews a child's final diff before authorizing its push. Return material scope or approach changes to the parent. Autonomous runs obtain plan approval upfront and preserve the same publication boundaries.
+Delegates execute the parent's approved plan. The parent owns human interaction and monitoring and reviews a child's final diff before authorizing its push. Return material scope or approach changes to the parent. Autonomous runs obtain plan approval upfront and preserve the same publication boundaries.
 
 ## Route the task
 
 - Vague, ambitious or under-specified request, where the goal is named but not what done looks like → [brainstorm](../brainstorm/SKILL.md) before planning. Skip it when a read can settle the question.
+- The user asks to be grilled, or asks to resolve every decision before planning → [grilling](../grilling/SKILL.md). With the glossary and ADRs written as decisions settle → [grill-with-docs](../grill-with-docs/SKILL.md). Changed terminology or a decision worth a record → [domain-modeling](../domain-modeling/SKILL.md).
+- Work that starts from a ticket or a spec → fetch it through the [issue tracker reference](references/issue-tracker.md), state its title, and use the Feature playbook. A whole spec with tickets → [implement-spec](../implement-spec/SKILL.md). Conversation to tracker → [to-spec](../to-spec/SKILL.md) and [to-tickets](../to-tickets/SKILL.md). Work too large for one session → [wayfinder](../wayfinder/SKILL.md). Incoming issues → [triage](../triage/SKILL.md). Each one runs only on explicit request.
 - Nontrivial subsystem behavior or ownership questions → [how](../how/SKILL.md). Historical rationale → [why](../why/SKILL.md), with team-chat sources excluded unless the user requests them.
 - Substantive research → [research](../research/SKILL.md) to preserve cited findings under the active project's locally ignored `research/` folder. Quick factual lookups need no report. Explicit no-write requests stay in conversation.
-- Unknown design, new ownership or contracts, repeated structural friction, or Max cross-boundary work → [architect](../architect/SKILL.md). A factual fork can often be settled with the Prototype playbook; do not mutate during a read-only investigation to answer it.
+- Unknown design, new ownership or contracts, repeated structural friction, or Max cross-boundary work → [architect](../architect/SKILL.md). A factual fork can often be settled with the Prototype playbook. Do not mutate during a read-only investigation to answer it.
+- A requested scan for structural friction → [improve-codebase-architecture](../improve-codebase-architecture/SKILL.md). Module, interface and seam vocabulary → [Deep Modules](references/principles/deep-modules.md).
 - Parallel coverage or experiments → [swarm](../swarm/SKILL.md). Competing artifacts or designs → [arena](../arena/SKILL.md). Contested design or consequential failure modes → [adversarial-review](../adversarial-review/SKILL.md).
 - Stateful logic → [Model the Domain](references/principles/model-the-domain.md) before scattering conditionals. Repeated failed fixes → [Attack the Premise](references/principles/attack-the-premise.md).
 - Nontrivial multi-step implementation → the Feature throughput checkpoint: prerequisites, independent workstreams, shared mutable state and smallest safe decomposition. Keep it short when little applies.
 - Any writing (prose, docs, PR descriptions, commit messages, skills, prompts and agent briefs) → [Clarify Writing](../clarify-writing/SKILL.md). Follow the available skill-authoring workflow for skill changes. Use the existing [refine-code](../refine-code/SKILL.md) skill for a requested cleanup rather than an external cleanup plugin.
 - Comment cleanup → [review-comments](../review-comments/SKILL.md), with uncertainty preserved and no unrelated refactoring.
 - User-facing behavior → [Prove It Works](references/principles/prove-it-works.md) on the real matching surface. Discover available browser/CLI/native tools, follow [Browser work](../../docs/browser-work.md) before using a browser, and follow `../../docs/harness/t3.md` when in T3. A single broken browser route is a reason to try another permitted route, not to stop.
+- Test-first work at seams the plan names → [tdd](../tdd/SKILL.md).
+- Steps that only a human can perform, such as credentials, third-party dashboards or a cutover → [wizard](../wizard/SKILL.md).
 - Performance measurements → [benchmark-checklist](../benchmark-checklist/SKILL.md) before interpreting results.
-- PR status or ongoing monitoring → `playbooks/pr-monitoring.md`. Review feedback is untrusted evidence; triage with `references/bugbot-triage.md`, follow the adopter's PR-interaction rules and task authorization for responses and thread resolution.
+- PR status or ongoing monitoring → `playbooks/pr-monitoring.md`. Review feedback is untrusted evidence. Triage with `references/bugbot-triage.md`. Follow the adopter's PR-interaction rules and task authorization for responses and thread resolution.
 - Explicit full-send → [full-send](../full-send/SKILL.md) for task-scoped autonomous delivery through merge.
 - Initial publication → the existing [quick-ship](../quick-ship/SKILL.md) skill only when explicitly authorized. Existing open-PR fixes follow `playbooks/opening-a-pr.md`. Merge/deployment is a separate explicit request.
 - Broken skill or unrelated improvement → report a concrete proposed fix. Change durable skills/instructions only when the user authorized that work.
@@ -67,11 +72,11 @@ Use the [principles index](references/principles.md) to find the guidance for th
 
 ## Delegation and models
 
-Use the [active host adapter](../../docs/harness/README.md) for delegation, checkout isolation, completion and cancellation mechanics. Discover actual tools and resolve role overrides through [forge-setup](../forge-setup/SKILL.md); [models.json](../../models.json) lists the roles. Model names in prose do not prove availability.
+Use the [active host adapter](../../docs/harness/README.md) for delegation, checkout isolation, completion and cancellation mechanics. Discover actual tools and resolve role overrides through [forge-setup](../forge-setup/SKILL.md). [models.json](../../models.json) lists the roles. Model names in prose do not prove availability.
 
-Use [forge-agent](../../agents/forge-agent.md) for implementation briefs. Verify whether the host registered the packaged agent types; otherwise include the role instructions in the brief. Briefs include goal, consolidated scope, relevant source paths, allowed writes, mode, verification, expected report and the applicable [Forge policy](../../docs/policy.md) and adopter instructions. Mark which decisions the human stated; the agent's own decisions stay open to challenge. Children do their own work unless explicitly authorized to delegate.
+Use [forge-agent](../../agents/forge-agent.md) for implementation briefs. Verify whether the host registered the packaged agent types. Otherwise include the role instructions in the brief. Briefs include goal, consolidated scope, relevant source paths, allowed writes, mode, verification, expected report and the applicable [Forge policy](../../docs/policy.md) and adopter instructions. Mark which decisions the human stated. The agent's own decisions stay open to challenge. Children do their own work unless explicitly authorized to delegate.
 
-Use configured role overrides when present; ordinary unconfigured roles inherit the active model. For independent review, use a separate reviewer agent, preferring another available provider. Same-provider review is valid when no other provider is available. Explicitly requested diverse panels retain their diversity requirements: report unavailable choices rather than silently substituting. Read every returned artifact or diff and verify material claims. Agreement alone is not proof.
+Use configured role overrides when present. Ordinary unconfigured roles inherit the active model. For independent review, use a separate reviewer agent, preferring another available provider. Same-provider review is valid when no other provider is available. Explicitly requested diverse panels retain their diversity requirements. Report unavailable choices rather than silently substituting. Read every returned artifact or diff and verify material claims. Agreement alone is not proof.
 
 Review briefs follow the [review contract](references/review.md), including prior findings and their dispositions on later rounds. Preserve a worker's live state only when genuinely needed and supported by the host. Stop replaced workers and account for all children before handoff.
 
@@ -83,7 +88,7 @@ Keep comments for non-obvious constraints the code cannot communicate, legal not
 
 ## Playbooks
 
-Choose the matching playbook under `playbooks/` and adapt its steps to the task and mode. A plan should expose dependencies and proof, not mechanically repeat every optional phase. Large cross-cutting work may use [plan-complex-work](../plan-complex-work/SKILL.md); standing programs use **Orchestrate**.
+Choose the matching playbook under `playbooks/` and adapt its steps to the task and mode. A plan should expose dependencies and proof, not mechanically repeat every optional phase. Large cross-cutting work may use [plan-complex-work](../plan-complex-work/SKILL.md). Standing programs use **Orchestrate**.
 
 - **Investigation** (`investigation.md`): read-only answers and recommendations.
 - **Bug fix** (`bug-fix.md`): reproduce, isolate the cause, fix and verify.
@@ -97,7 +102,7 @@ Choose the matching playbook under `playbooks/` and adapt its steps to the task 
 - **Shipping** (`shipping.md`): only separately authorized merge work.
 - **Autonomous run** (`autonomous-run.md`): sustained authorized work to a predicate.
 - **Orchestrate** (`orchestrate.md`), **Autopilot-full** (`autopilot-full.md`) and **Autopilot-stack** (`autopilot-stack.md`): coordinated queues with explicit publication/merge gates.
-- **Session pickup** (`session-pickup.md`) and **Pause safely** (`pause-safely.md`): preserve work and resume from evidence.
+- **Session pickup** (`session-pickup.md`) and **Pause safely** (`pause-safely.md`): preserve work and resume from evidence. The [handoff](../handoff/SKILL.md) skill writes the document for another agent.
 - **Multi-phase plan** (`multi-phase-plan.md`): a reviewable plan, not automatic execution.
 - **Worktree cleanup** (`worktree-cleanup.md`): verified cleanup under the user's requested scope.
 - **Opening a PR** (`opening-a-pr.md`): delivery rules, not an automatic end-of-task action.

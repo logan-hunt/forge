@@ -35,7 +35,7 @@ The important types, services, or abstractions needed to follow the rest. Brief 
 ### How It Works
 The core of the explanation, and the longest section. Walk through the flow: what triggers it, what happens step by step, where data goes, what the decision points are.
 
-Use prose, not pseudocode. Reference specific files and functions so the reader knows where to look, but don't dump large code blocks unless a snippet is essential to a point.
+Use prose, not pseudocode. Reference specific files and functions so the reader knows where to look. Don't dump large code blocks unless a snippet is essential to a point.
 
 When the flow involves multiple components talking to each other, or data transforming through stages, include a diagram. Use mermaid (```mermaid) for structured flows (sequence diagrams, flowcharts, component graphs) or ASCII art for simpler relationships where mermaid would be overkill. Use your judgment. A diagram should clarify, not decorate. If prose covers the flow, skip the diagram.
 

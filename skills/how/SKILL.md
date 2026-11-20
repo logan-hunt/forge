@@ -1,6 +1,6 @@
 ---
 name: how
-description: Explain how code works, including runtime flow, ownership and where changes belong. Use for teaching, walkthroughs, onboarding and module-placement questions. Use why for historical rationale.
+description: Explain how code works, including runtime flow, ownership and where changes belong. Use for teaching, walkthroughs, onboarding and module-placement questions. Use why for historical rationale and teach for a course over several sessions.
 disable-model-invocation: false
 ---
 

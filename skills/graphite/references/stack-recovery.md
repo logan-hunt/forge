@@ -25,13 +25,13 @@ Choose the narrowest scope that preserves the requested stack:
 | Restack a branch and its ancestors | `gt restack --branch <branch> --downstack --no-interactive` |
 | Move a branch to a different parent and restack descendants | `gt move --source <branch> --onto <new-parent> --no-interactive` |
 
-`gt restack` operates on the current stack; it is not inherently a repository-wide operation. `gt sync` has broader effects, including remote synchronization, trunk updates, cleanup, and potentially restacking multiple stacks. Do not substitute it for a narrow repair.
+`gt restack` operates on the current stack. It is not inherently a repository-wide operation. `gt sync` has broader effects, including remote synchronization, trunk updates, cleanup, and potentially restacking multiple stacks. Do not substitute it for a narrow repair.
 
-Inspect descendants before moving or amending a branch. Worktree handling and flags such as `gt move --only` vary by version; check installed help before relying on them. Verify the resulting graph and parent-relative diffs after the operation.
+Inspect descendants before moving or amending a branch. Worktree handling and flags such as `gt move --only` vary by version. Check installed help before relying on them. Verify the resulting graph and parent-relative diffs after the operation.
 
 ## Continue an interrupted operation
 
-Start with `git status` and inspect both unresolved paths and staged resolutions. Missing conflict markers alone do not prove a resolution is correct; check that it preserves the intended changes from both sides.
+Start with `git status` and inspect both unresolved paths and staged resolutions. Missing conflict markers alone do not prove a resolution is correct. Check that it preserves the intended changes from both sides.
 
 For a Graphite operation halted by conflicts, stage only the resolved paths and resume through Graphite:
 
@@ -40,7 +40,7 @@ git add -- <resolved-files>
 gt continue --no-interactive
 ```
 
-Use `gt abort` when deliberately abandoning that Graphite operation, accounting for resolution work that would be lost. For an independently started Git rebase, use Git's own continuation or abort commands. Identify which operation is active before choosing; do not start a second rebase over an interrupted one.
+Use `gt abort` when deliberately abandoning that Graphite operation, accounting for resolution work that would be lost. For an independently started Git rebase, use Git's own continuation or abort commands. Identify which operation is active before choosing. Do not start a second rebase over an interrupted one.
 
 ## Raw Git rebase as a fallback
 
@@ -52,11 +52,11 @@ Skip a commit only after proving its patch is already present or intentionally o
 
 ## Split, uncommit, or delete requested branches
 
-For a requested split, inspect `gt split --help`. Choose commit, hunk, or file boundaries that produce coherent PRs. In 1.8.3, commit and hunk splitting require interaction; file splitting can run non-interactively. Do not substitute an arbitrary `git reset HEAD^` for an unsupported split mode.
+For a requested split, inspect `gt split --help`. Choose commit, hunk, or file boundaries that produce coherent PRs. In 1.8.3, commit and hunk splitting require interaction. File splitting can run non-interactively. Do not substitute an arbitrary `git reset HEAD^` for an unsupported split mode.
 
-If the user explicitly wants commits returned to unstaged changes, record the original tip and verify the precise boundary and working-tree contents before using a mixed reset. Account for existing staged and unstaged work; never use a hard reset for this purpose.
+If the user explicitly wants commits returned to unstaged changes, record the original tip. Verify the precise boundary and working-tree contents before using a mixed reset. Account for existing staged and unstaged work. Never use a hard reset for this purpose.
 
-For requested branch deletion, inspect children and PR state first. `gt delete <branch>` deletes the local branch and Graphite metadata and restacks its children onto the parent. Remote branch deletion and PR closure are separate effects; check installed help for options that add them. Force deletion of unmerged work or deletion of ancestors/descendants must be within the specifically requested scope, not a default cleanup recipe.
+For requested branch deletion, inspect children and PR state first. `gt delete <branch>` deletes the local branch and Graphite metadata and restacks its children onto the parent. Remote branch deletion and PR closure are separate effects. Check installed help for options that add them. Force deletion of unmerged work or deletion of ancestors/descendants must be within the specifically requested scope, not a default cleanup recipe.
 
 ## Unexpected changes after stack operations
 

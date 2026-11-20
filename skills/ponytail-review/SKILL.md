@@ -43,11 +43,11 @@ has one, and give it in full.
    data writes, a bug fix) with no test that fails when it breaks. One good
    test, not coverage.
 5. **Speed:** big slowdowns are problems. Small wins (work repeated in a hot
-   loop) are suggestions; some software counts every millisecond.
+   loop) are suggestions. Some software counts every millisecond.
 6. **Lean:** code that should not exist or should be smaller.
    - delete: dead code, unused options, speculative features
    - reuse: the repo already has this helper (name the path)
-   - stdlib / native: the standard library or platform already does it; a
+   - stdlib / native: the standard library or platform already does it, a
      new dependency for a few lines
    - yagni: abstraction with one implementation, config nobody sets
    - merge: near-copies that must change together

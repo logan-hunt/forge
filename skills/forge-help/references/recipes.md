@@ -18,6 +18,7 @@ These examples use Claude plugin commands such as `/forge:forge`. With local ski
 - Solo fix: `/forge:forge lite fix <small bug>. use existing patterns and verify the affected behavior.`
 - Bug: `/forge:forge <symptom>. repro first, then fix and verify.`
 - Bug in an app: `/forge:forge reproduce <symptom> through the app as a user would. after the approved fix, repeat the interaction and show the result.`
+- Feature, test-first: `/forge:forge add <behavior> with /forge:tdd. agree the seams with me first.`
 - Bug with a cheap test: `/forge:forge repro <bug> first. if there's a cheap test path, /forge:tdd it. then fix and rerun.`
 - Feature: `/forge:forge add <behavior>. <current output> stays byte-identical. verify both.`
 - Refactor: `/forge:forge move <code> into one module, zero behavior change. record the current output first and prove it's unchanged after.`
@@ -29,6 +30,10 @@ These examples use Claude plugin commands such as `/forge:forge`. With local ski
 - `/forge:forge we need <feature>. /forge:architect it first, and answer open questions with prototypes. let me review before proceeding.`
 - `/forge:how would i use <new package>? walk me through one example and compare it with the current package.`
 - `ask /forge:arena for a second opinion on this thread and our approach.`
+- `/forge:grill-with-docs <plan or design>` asks every open decision in rounds and writes the glossary and ADRs as you answer.
+- `/forge:to-spec`, then `/forge:to-tickets`, then `/forge:implement-spec <spec>` takes a settled conversation to tickets and builds them.
+- `/forge:wayfinder <idea too large for one session>` charts a map of decision tickets. Run it again with the map to resolve the next one.
+- `/forge:improve-codebase-architecture` scans for shallow modules and shows the candidates in a report.
 - `/forge:forge turn this design into a plan. small verifiable PRs, each with its own verification steps.`
 - `/forge:forge plan the migration of <library> to <target>. small verifiable PRs. the result must match the original exactly, bugs included.`
 
@@ -47,5 +52,6 @@ These examples use Claude plugin commands such as `/forge:forge`. With local ski
 - `/forge:recap-chat` catches you up on this chat since your last message and lists every call that waits on you.
 - `/forge:forge max implement this queue. each item is independent. keep initial publication gated.`
 - `/forge:forge autopilot these changes, but don't merge. i'll land them.`
-- `/forge:reflect propose durable changes from what we learned. do not apply them yet.` Approve only edits that change a future decision.
+- `/forge:handoff <what the next session will do>` writes a document a fresh agent can continue from.
+- `/forge:retro propose durable changes from what we learned. do not apply them yet.` Approve only edits that change a future decision.
 - `/forge:bro` restates the last reply in plain words.

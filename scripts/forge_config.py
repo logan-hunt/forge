@@ -85,12 +85,20 @@ def validate_config(config):
         validate_target(target)
 
 
+RENAMED_ROLES = {
+    'interrogate reviewers': 'adversarial-review reviewers',
+    'reflect tooling': 'retro tooling',
+    'reflect judgment': 'retro judgment',
+}
+
+
 def settings_with_current_roles(settings):
     roles = settings.get('roles')
-    if isinstance(roles, dict) and 'interrogate reviewers' in roles:
+    if isinstance(roles, dict) and RENAMED_ROLES.keys() & roles.keys():
         roles = roles.copy()
-        old_target = roles.pop('interrogate reviewers')
-        roles.setdefault('adversarial-review reviewers', old_target)
+        for legacy, role in RENAMED_ROLES.items():
+            if legacy in roles:
+                roles.setdefault(role, roles.pop(legacy))
         settings = {**settings, 'roles': roles}
     validate_config(settings)
     return settings

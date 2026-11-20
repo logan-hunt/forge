@@ -17,7 +17,7 @@ Use the Sentry MCP.
    search_issues (natural language, e.g., "errors in PaymentService timeout", "unhandled exceptions in uploadFile")
    ```
 
-   Build queries from the exception class names the target handles, its function or class name, the error message strings it checks for, and its file path.
+   Search for the exception class names the target handles, its function or class name, the error message strings it checks for, and its file path.
 
 3. **Narrow by release and time window.**
 
@@ -26,7 +26,7 @@ Use the Sentry MCP.
    get_issue_tag_values (for an issue, see distribution across versions, users, environments)
    ```
 
-   For a suspected issue, check **first seen** and **last seen** (does the stop line up with the target's ship date?), the **affected releases** (which saw it, and which was the fix?), and the **frequency trajectory** (did it spike, then get resolved?).
+   For a suspected issue, check **first seen** and **last seen** (does the stop match the target's ship date?). Check the **affected releases** (which saw it, and which was the fix?) and the **frequency trajectory** (did it spike, then get resolved?).
 
 4. **Pull the full event for context.**
 
